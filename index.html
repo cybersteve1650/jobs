@@ -25,8 +25,9 @@ button{font-family:inherit;font-size:inherit;cursor:pointer;color:inherit}
 :focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:6px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
 
-header{background:#27323A;color:#fff;padding:32px 0 28px;border-bottom:5px solid var(--red)}
-.brandline{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+header{background:#27323A;color:#fff;padding:30px 0 26px;border-bottom:5px solid var(--red)}
+.headtop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.brandline{display:flex;align-items:center;gap:10px;margin-bottom:15px}
 .brandmark{width:24px;height:24px;background:var(--red);border-radius:26%;flex:none}
 .brandtext{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:bold;color:#E1DDD7}
 h1{margin:0 0 6px;font-size:31px;line-height:1.15;letter-spacing:-.025em;color:#fff}
@@ -34,27 +35,42 @@ h1{margin:0 0 6px;font-size:31px;line-height:1.15;letter-spacing:-.025em;color:#
 .stats{display:flex;gap:36px;margin-top:22px}
 .stat b{display:block;font-size:27px;line-height:1.1;letter-spacing:-.02em;color:#fff}
 .stat span{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8E9BA3}
+.langsw{display:inline-flex;background:rgba(255,255,255,.09);border-radius:9px;padding:3px;flex:none}
+.langsw button{border:none;background:none;padding:6px 13px;border-radius:7px;
+  font-size:12.5px;color:#C4CDD3;transition:.12s}
+.langsw button[aria-pressed="true"]{background:#fff;color:var(--ink);font-weight:bold}
 
 .controls{position:sticky;top:0;z-index:20;background:var(--paper);
-  border-bottom:1px solid var(--line);padding:14px 0 13px}
-.toprow{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:12px}
+  border-bottom:1px solid var(--line);padding:13px 0}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .seg{display:inline-flex;background:var(--white);border:1px solid var(--line);
   border-radius:11px;padding:3px}
-.seg button{border:none;background:none;padding:8px 16px;border-radius:8px;
-  font-size:13.5px;color:var(--muted);transition:.12s;display:inline-flex;align-items:center;gap:7px}
-.seg button .ico{font-size:14px;filter:grayscale(1);opacity:.7}
-.seg button[aria-pressed="true"] .ico{filter:none;opacity:1}
+.seg button{border:none;background:none;padding:8px 16px;border-radius:8px;font-size:13.5px;
+  color:var(--muted);transition:.12s;display:inline-flex;align-items:center;gap:7px}
+.seg button .ico{font-size:14px;filter:grayscale(1);opacity:.65}
 .seg button[aria-pressed="true"]{background:var(--ink);color:#fff;font-weight:bold}
+.seg button[aria-pressed="true"] .ico{filter:none;opacity:1}
+.rightgrp{display:flex;align-items:center;gap:12px}
 .count{font-size:13px;color:var(--muted)}
 .count b{color:var(--ink)}
+.collapse{display:inline-flex;align-items:center;gap:7px;background:var(--white);
+  border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:13px}
+.collapse:hover{border-color:#CDC7BE}
+.collapse .badge{background:var(--red);color:#fff;border-radius:999px;font-size:10.5px;
+  font-weight:bold;padding:1px 7px;display:none}
+.collapse.active .badge{display:inline-block}
+.collapse .arrow{transition:transform .18s;font-size:10px;color:var(--muted)}
+.controls.folded .collapse .arrow{transform:rotate(-90deg)}
 
+.body{overflow:hidden;margin-top:12px;
+  transition:max-height .22s ease,opacity .16s,margin-top .22s}
+.controls.folded .body{max-height:0!important;opacity:0;margin-top:0}
 .filterline{display:flex;gap:9px;flex-wrap:wrap}
 .search{flex:1 1 260px}
 .search input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;
   background:var(--white);font-size:15px;color:var(--ink)}
 select{padding:11px 12px;border:1px solid var(--line);border-radius:10px;
   background:var(--white);color:var(--ink);font-size:13.5px}
-
 .chiprow{display:flex;align-items:center;gap:12px;margin-top:11px}
 .rowlabel{flex:none;width:100px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   font-weight:bold;color:var(--muted)}
@@ -66,11 +82,11 @@ select{padding:11px 12px;border:1px solid var(--line);border-radius:10px;
 .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff;font-weight:bold}
 .chip[aria-pressed="true"] small{opacity:.8}
 #chipsType .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink)}
+.clearrow{text-align:right;margin-top:9px}
 .clear{background:none;border:none;color:var(--red);font-size:12.5px;padding:0}
 
 main{padding:22px 0 70px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:11px}
-
 .card{text-align:left;width:100%;background:var(--white);border:1px solid var(--line);
   border-radius:13px;padding:16px 17px;transition:.13s;display:flex;flex-direction:column}
 .card:hover{border-color:var(--red);box-shadow:0 5px 16px rgba(27,36,44,.08);transform:translateY(-1px)}
@@ -85,9 +101,14 @@ main{padding:22px 0 70px}
 .p-purple{background:var(--purple-bg);color:var(--purple)}
 .p-amber{background:var(--amber-bg);color:var(--amber)}
 .p-grey{background:#F0EFEC;color:var(--muted)}
-.loc{font-size:12.5px;color:var(--muted);margin-top:10px}
-.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;
-  margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:12.5px}
+.loc{font-size:12.5px;color:var(--muted)}
+.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin-top:10px;flex-wrap:wrap}
+.jd{font-size:12px;font-weight:bold;color:var(--red);white-space:nowrap}
+.jd:hover{text-decoration:underline}
+.card{cursor:pointer}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;
+  padding-top:11px;border-top:1px solid var(--line);font-size:12.5px}
 .foot .n{color:var(--red);font-weight:bold}
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
 .empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
@@ -95,7 +116,7 @@ main{padding:22px 0 70px}
 .back{background:var(--white);border:1px solid var(--line);border-radius:999px;
   padding:8px 16px;font-size:13px;margin-bottom:20px}
 .dhead h2{margin:4px 0 7px;font-size:27px;letter-spacing:-.025em;line-height:1.18}
-.deyebrow{font-size:13px;font-weight:bold;color:var(--ink)}
+.deyebrow{font-size:13px;font-weight:bold}
 .dpay{color:var(--green);font-weight:bold;font-size:18px}
 .tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);margin:22px 0;overflow-x:auto}
 .tab{background:none;border:none;padding:10px 0;color:var(--muted);font-size:14px;
@@ -129,11 +150,22 @@ main{padding:22px 0 70px}
 .btn.primary:hover{background:var(--red-dark);text-decoration:none}
 .btn.ghost{background:var(--white)}
 .btn.ghost:hover{text-decoration:none;border-color:var(--red);color:var(--red)}
-
 footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:12.5px}
 @media(max-width:700px){
-  h1{font-size:24px} .dhead h2{font-size:21px} .grid2{grid-template-columns:1fr}
-  .rowlabel{width:74px} .stats{gap:24px} .stat b{font-size:23px}
+  .wrap{padding:0 15px}
+  h1{font-size:22px} .dhead h2{font-size:20px} .grid2{grid-template-columns:1fr}
+  .stats{gap:20px} .stat b{font-size:21px} .stat span{font-size:9.5px}
+  header{padding:22px 0 20px}
+  .controls{padding:10px 0}
+  .grid{grid-template-columns:1fr;gap:9px}
+  .seg button{padding:8px 12px;font-size:13px}
+  .collapse{padding:9px 14px}
+  .filterline{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .search{grid-column:1/-1}
+  select{width:100%;padding:10px}
+  .chiprow{display:block;margin-top:10px}
+  .rowlabel{width:auto;margin-bottom:6px}
+  .chips{margin:0 -15px;padding:2px 15px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -141,50 +173,50 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);f
 <body>
 
 <header><div class="wrap">
-  <div class="brandline"><div class="brandmark"></div>
-    <div class="brandtext">Robert Half Japan</div></div>
-  <h1>Open cyber security roles, Tokyo</h1>
-  <p class="sub"><span id="curator"></span> · <span id="curatorTitle"></span> · Robert Half Japan</p>
+  <div class="headtop">
+    <div>
+      <div class="brandline"><div class="brandmark"></div>
+        <div class="brandtext">Robert Half Japan</div></div>
+      <h1 id="h1"></h1>
+      <p class="sub" id="sub"></p>
+    </div>
+    <div class="langsw" role="group" aria-label="Language">
+      <button type="button" id="lEn" aria-pressed="true">EN</button>
+      <button type="button" id="lJa" aria-pressed="false">日本語</button>
+    </div>
+  </div>
   <div class="stats">
-    <div class="stat"><b id="sCo">0</b><span>Companies</span></div>
-    <div class="stat"><b id="sRo">0</b><span>Open roles</span></div>
-    <div class="stat"><b id="sUp"></b><span>Updated</span></div>
+    <div class="stat"><b id="sCo">0</b><span id="lblCo"></span></div>
+    <div class="stat"><b id="sRo">0</b><span id="lblRo"></span></div>
+    <div class="stat"><b id="sUp"></b><span id="lblUp"></span></div>
   </div>
 </div></header>
 
-<div class="controls"><div class="wrap">
+<div class="controls" id="controls"><div class="wrap">
   <div class="toprow">
-    <div class="seg" role="group" aria-label="View mode">
-      <button type="button" id="vRole" aria-pressed="true"><span class="ico">💼</span>By role</button>
-      <button type="button" id="vCo" aria-pressed="false"><span class="ico">🏢</span>By company</button>
+    <div class="seg" role="group">
+      <button type="button" id="vRole" aria-pressed="true"><span class="ico">💼</span><span id="tRole"></span></button>
+      <button type="button" id="vCo" aria-pressed="false"><span class="ico">🏢</span><span id="tCo"></span></button>
     </div>
-    <div class="count"><b id="n">0</b> <span id="nLabel">roles shown</span></div>
+    <div class="rightgrp">
+      <div class="count"><b id="n">0</b> <span id="nLabel"></span></div>
+      <button class="collapse" id="fold" type="button">
+        <span id="foldText"></span><span class="badge" id="foldBadge">0</span><span class="arrow">▼</span></button>
+    </div>
   </div>
-  <div class="filterline">
-    <div class="search"><input id="q" type="search" placeholder="Search role, company or skill" aria-label="Search"></div>
-    <select id="fJp" aria-label="Japanese level"><option value="">Any Japanese level</option></select>
-    <select id="fPay" aria-label="Minimum salary">
-      <option value="0">Any salary</option><option value="10">¥10M and above</option>
-      <option value="13">¥13M and above</option><option value="15">¥15M and above</option>
-      <option value="20">¥20M and above</option><option value="25">¥25M and above</option>
-    </select>
-    <select id="fRem" aria-label="Work style">
-      <option value="">Any work style</option><option value="remote">3 or more remote days</option>
-      <option value="full">Fully remote</option>
-    </select>
+  <div class="body" id="fbody">
+    <div class="filterline">
+      <div class="search"><input id="q" type="search" aria-label="Search"></div>
+      <select id="fJp"></select><select id="fPay"></select><select id="fRem"></select>
+    </div>
+    <div class="chiprow"><div class="rowlabel" id="rlType"></div><div class="chips" id="chipsType"></div></div>
+    <div class="chiprow"><div class="rowlabel" id="rlFocus"></div><div class="chips" id="chips"></div></div>
+    <div class="clearrow"><button class="clear" id="clear" type="button"></button></div>
   </div>
-  <div class="chiprow"><div class="rowlabel">Company</div><div class="chips" id="chipsType"></div></div>
-  <div class="chiprow"><div class="rowlabel">Focus</div><div class="chips" id="chips"></div></div>
-  <div style="text-align:right;margin-top:9px">
-    <button class="clear" id="clear" type="button">Clear all filters</button></div>
 </div></div>
 
 <main class="wrap" id="main"></main>
-
-<footer><div class="wrap">
-  Salary figures are indicative annual packages in Japanese yen and are confirmed with each employer
-  at application stage. Robert Half is paid by the hiring company, so this service is free for candidates.
-</div></footer>
+<footer><div class="wrap" id="foot"></div></footer>
 
 <script>
 const CONTACT = {
@@ -193,60 +225,133 @@ const CONTACT = {
   email: "REPLACE.ME@roberthalf.co.jp",
   updated: "August 2026"
 };
-const ROLES = [{"company":"Andpad","domain":"andpad.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://hrmos.co/pages/andpad/jobs/140","priority":"B"},{"company":"Andpad","domain":"andpad.co.jp","title":"Security Promotion セキュリティー推進","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://hrmos.co/pages/andpad/jobs/cop0000432","priority":"B"},{"company":"BASE","domain":"binc.jp","title":"CSIRT","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Tokyo","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/binc/pages/102966","priority":"B"},{"company":"BayCurrent","domain":"baycurrent.co.jp","title":"Senior Consultant to Associate Partner","employer_type":"Consulting","salary_min":10.0,"salary_max":30.0,"salary":"¥10M to ¥30M+","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Red Team & Pentest","SOC & Incident Response","GRC & Governance","Consulting"],"seniority":"Leadership","link":"","priority":"B"},{"company":"Benesse","domain":"benesse.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":12.7,"salary_max":12.7,"salary":"¥12.7M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response","Identity & Access"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Broadband Security","domain":"bbsec.co.jp","title":"Sales Manager","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Ask","location":"Shinjuku","jp":"Native","en":"Not specified","tags":["Sales"],"seniority":"Senior","link":"","priority":"A"},{"company":"Broadband Security","domain":"bbsec.co.jp","title":"Security Engineer (Pentest)","employer_type":"Consulting","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"Ask","location":"Shinjuku","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1Xp7p5aSMhGrb3BWjfIkFzjeu5jCIJaXXgqgoTBBJIwQ/edit?tab=t.0","priority":"A"},{"company":"Carenet","domain":"carenet.co.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Ask","location":"Iidabashi","jp":"Native","en":"Not specified","tags":["Product & AppSec","Cloud Security"],"seniority":"Mid-level","link":"https://hrmos.co/pages/neoarc","priority":"B"},{"company":"Chubb","domain":"chubb.com","title":"Information Security Manager and Cyber Transformation Lead","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"1 days remote","location":"Shinagawa","jp":"Business","en":"Business","tags":["GRC & Governance"],"seniority":"Senior","link":"https://www.linkedin.com/jobs/view/4440919042/?alternateChannel=search&eBP=CwEAAAGfs00KGji8p2V_R9Gy_2HhDhXRlJZmIKVZ6leaoVSkB-5wD5xANn81y8_ZPAsnvvFAJrO0wDzdJYtYqItqbeYxSBVjsk3MuzW6NUu4gwDHWlD0o9FPyCF7Je0OJLUbzHA0T7GLET52A3jpk3mShK8xOQCb8z83VjsbED0rtSh0U3bDAqejPuUHDM81DRWim2Ietk7ZD3VKOMEEiP6wOY2vhDMhksw55xs6OAwGaIm1B6Wd5mqBLLTatAt5CeWuBtBXGFD_4QTmitGe2EIFM_uMtVGzyjGuCT8nczjqXk9FJDcDF7-dixuKH7GgjsZ2sjjdeXjP5Ox8PgYsn5Y_tNMKxA7eXBLBcrOlhOegmLPiWWmOiXqHg9kWfFAOj-pVse49_iqZT8hJK9rLftIEDeZRQj4x9ro4Zz2_6LrvQu7j5D85Fzrz8PnzFFgvGdkRFylwBNw&refId=mM1SmXBc20r3GKAnpNoaXQ%3D%3D&trackingId=l9x64wB3%2FOr0sdqY%2F%2BUHhQ%3D%3D","priority":"B"},{"company":"Coupang (Rocket One)","domain":"coupang.com","title":"Director, Privacy (Japan)","employer_type":"Internal","salary_min":30.0,"salary_max":30.0,"salary":"¥30M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Privacy","Project Management"],"seniority":"Leadership","link":"https://www.coupang.jobs/jp/jobs/7839809/director-security-engineering/?gh_jid=7839809","priority":"B"},{"company":"CrowdStrike","domain":"crowdstrike.com","title":"PreSales Engineer (High Touch)","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers/details/Regional-Sales-Engineer_R27946-1?source=google_ppc&gad_source=1&locationCountry=8b705da2becf43cfaccc091da0988ab2","priority":"B"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Red Teamer","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/","priority":"A"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Infrastructure Engineer","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Identity & Access","Network & Infrastructure"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/","priority":"A"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"DFIR (Digital Forensics and Incident Response)","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/","priority":"A"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Hardware Security Engineer (Embedded and IoT systems)","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["OT, IoT & Automotive"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/","priority":"A"},{"company":"Dai-Ichi Life","domain":"dai-ichi-life.co.jp","title":"Security Manager for either Security Operations, Governance, Strategy","employer_type":"Internal","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","GRC & Governance"],"seniority":"Senior","link":"","priority":"B"},{"company":"Dai-Ichi Life","domain":"dai-ichi-life.co.jp","title":"Cyber Security (Specialist/Non-Management)","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Business","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Deloitte","domain":"deloitte.com","title":"Red Team Senior Manager - Senior Consultant","employer_type":"Consulting","salary_min":8.0,"salary_max":17.0,"salary":"¥8M to ¥17M","remote":"4 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Conversational","tags":["Red Team & Pentest","Consulting"],"seniority":"Senior","link":"https://deloittejapan.jposting.net/job_search/job_detaile.phtml?rpc=&cc=3&csc=&pf=1&sc=27&p=2&ap=2&mjs=&sk=&jc=1042&pf=1","priority":"B"},{"company":"Deloitte DTCY Multi Team","domain":"deloitte.com","title":"Manager","employer_type":"Consulting","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Remote friendly","location":"Nijubashimae","jp":"Fluent","en":"Fluent","tags":["SOC & Incident Response","GRC & Governance","Consulting"],"seniority":"Senior","link":"https://docs.google.com/document/d/1mY2k4LWro_f9VBnEe-55cTD2o0DdtkPA/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"A"},{"company":"Deloitte DTCY Multi Team","domain":"deloitte.com","title":"Consultant to Senior Consultant","employer_type":"Consulting","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Remote friendly","location":"Nijubashimae","jp":"Fluent","en":"Fluent","tags":["Consulting"],"seniority":"Senior","link":"https://docs.google.com/document/d/1mY2k4LWro_f9VBnEe-55cTD2o0DdtkPA/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"A"},{"company":"Deloitte Financial Advisory","domain":"deloitte.com","title":"Senior Consultant to Manager","employer_type":"Consulting","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"Remote friendly","location":"Nijubashimae","jp":"Native","en":"Either","tags":["SOC & Incident Response","Consulting"],"seniority":"Senior","link":"https://www.deloitte.com/jp/ja/services/consulting/services/deloitte-forensic.html","priority":"A"},{"company":"Dolbix","domain":"","title":"Platform Assessment Engineer (Red/Penetration)","employer_type":"Consulting","salary_min":8.0,"salary_max":8.0,"salary":"¥8M","remote":"Ask","location":"Nihonbashi","jp":"Fluent","en":"Either","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"","priority":"A"},{"company":"Dolbix Consulting","domain":"","title":"Technical Leader","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/11972IzttMSJKvSJ6yv0rIKBiPRfXD1QrGHZqdThm7uE/edit?tab=t.0","priority":"A"},{"company":"Dolbix Consulting","domain":"","title":"Governance Staff (C to SC)","employer_type":"Consulting","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/11972IzttMSJKvSJ6yv0rIKBiPRfXD1QrGHZqdThm7uE/edit?tab=t.0","priority":"A"},{"company":"Enechain","domain":"enechain.co.jp","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Omotesando","jp":"Native","en":"Conversational","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://herp.careers/v1/enechain/Ib_zWULUAk6p","priority":"A"},{"company":"Enechain","domain":"enechain.co.jp","title":"AI Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Omotesando","jp":"Native","en":"Either","tags":["AI Security"],"seniority":"Mid-level","link":"https://herp.careers/v1/enechain/gjR7FOv2T15X","priority":"A"},{"company":"Exawizards","domain":"exawizards.com","title":"Pentest / Application Security Engineer","employer_type":"Technology","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/exwzd/pages/121969","priority":"A"},{"company":"Exawizards","domain":"exawizards.com","title":"IT Governance Specialist","employer_type":"Technology","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Exawizards","domain":"exawizards.com","title":"SOC and EDR Specialist","employer_type":"Technology","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/exwzd/pages/121972","priority":"B"},{"company":"Fenix24","domain":"fenix24.com","title":"Country Lead","employer_type":"Vendor","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Fluent","tags":["SOC & Incident Response","Pre-sales"],"seniority":"Leadership","link":"https://docs.google.com/document/d/1MfGcwQmCWu3HeiDSgcpLNVunn8brSDv2Hcep9EOxVa4/edit?usp=sharing","priority":"A"},{"company":"FFRI Security","domain":"ffri.co.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/2199803?hide_breadcrumb=false&hide_search=false","priority":"B"},{"company":"FFRI Security","domain":"ffri.co.jp","title":"Security PM","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/1674595?hide_breadcrumb=false&hide_search=false","priority":"B"},{"company":"FFRI Security Works","domain":"ffri.co.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/2220799?hide_breadcrumb=false&hide_search=false","priority":"B"},{"company":"Flatt Security","domain":"flatt.tech","title":"Security VA Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://recruit.flatt.tech/job/security_engineer","priority":"A"},{"company":"Geniee","domain":"geniee.co.jp","title":"CISO候補 Director","employer_type":"Consulting","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Leadership","link":"https://geniee.co.jp/recruit/","priority":"B"},{"company":"HRBrain","domain":"hrbrain.co.jp","title":"Enterprise Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Mita","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Cloud Security","Identity & Access","Security Architecture"],"seniority":"Mid-level","link":"https://hrmos.co/pages/hrbrain/jobs/26010501","priority":"B"},{"company":"HRBrain","domain":"hrbrain.co.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Mita","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://hrmos.co/pages/hrbrain/jobs/26010502","priority":"B"},{"company":"Intloop","domain":"intloop.com","title":"Director","employer_type":"Consulting","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Cloud Security","Identity & Access","Consulting"],"seniority":"Leadership","link":"https://www.intloop.com/recruit/career/business/","priority":"B"},{"company":"KPMG Ignition KIT","domain":"kpmg.com","title":"Senior Site Reliability Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Otemachi","jp":"Business","en":"Fluent","tags":["Security Engineering"],"seniority":"Senior","link":"","priority":"B"},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","SOC & Incident Response","Vulnerability Management"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/idSKIa8X_III","priority":"B"},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","SOC & Incident Response","Product & AppSec","Vulnerability Management"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/dSY1VUXgqIHy","priority":"B"},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"IT Governance","employer_type":"Internal","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/8egEJTsR2Ist","priority":"B"},{"company":"LineYahoo","domain":"lycorp.co.jp","title":"Security PM","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"Ask","location":"Yotsuya","jp":"Native","en":"Not specified","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://hrmos.co/pages/neoarc","priority":"B"},{"company":"Looop","domain":"looop.co.jp","title":"IT Governance Manager (OR Product Security)","employer_type":"Internal","salary_min":15.5,"salary_max":15.5,"salary":"¥15.5M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["GRC & Governance","Product & AppSec"],"seniority":"Senior","link":"","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"Senior Security Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Security Engineering"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000003","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"Security Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Consulting"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000002","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"Assessment Engineer (Consulting Service BU) TLPT","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000010","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"Assessment Engineer (Technical Service BU)","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Product & AppSec"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000011","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"Project Manager (WebApp/Mobile Assessment)","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Product & AppSec","Project Management"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000014","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"AI Security Engineer (Junior to Senior)","employer_type":"Vendor","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["AI Security"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000026","priority":"B"},{"company":"MBSD","domain":"mbsd.jp","title":"SOC Development and Management","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000024","priority":"B"},{"company":"Mercari","domain":"mercari.com","title":"Security Management Specialist - Merpay/Mercoin","employer_type":"Technology","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"4 days remote","location":"Roppongi","jp":"Native","en":"Conversational","tags":["GRC & Governance","Cloud Security"],"seniority":"Mid-level","link":"https://apply.workable.com/mercari/j/2DD18A13EB","priority":"B"},{"company":"Mercari","domain":"mercari.com","title":"IT Risk & Security Specialist - Merpay","employer_type":"Technology","salary_min":null,"salary_max":null,"salary":"Ask","remote":"4 days remote","location":"Roppongi","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://apply.workable.com/mercari/j/C58376E7FA","priority":"B"},{"company":"Metlife","domain":"metlife.co.jp","title":"AVP Information Security Governance (reopen)","employer_type":"Internal","salary_min":30.0,"salary_max":30.0,"salary":"¥30M","remote":"2 days remote","location":"Kinshicho","jp":"Fluent","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Mizuho","domain":"mizuho-fg.co.jp","title":"Information Security Governance (Leader to junior)","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://www.mizuho-fg.co.jp/saiyou/career_recruit/index.html","priority":"B"},{"company":"Mizuho","domain":"mizuho-fg.co.jp","title":"Cyber Security Engineer","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://www.mizuho-fg.co.jp/saiyou/career_recruit/index.html","priority":"A"},{"company":"MS&AD Holdings (Mitsui Sumitomo)","domain":"ms-ad-hd.com","title":"Global Cyber Security Strategist","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Business","en":"Business","tags":["SOC & Incident Response","Network & Infrastructure"],"seniority":"Mid-level","link":"https://www.openwork.jp/a0910000000Frqg/recruit?j=6f3c2bc09f4976e5&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic","priority":"A"},{"company":"MS&AD Holdings (Mitsui Sumitomo)","domain":"ms-ad-hd.com","title":"Cyber Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Network & Infrastructure"],"seniority":"Mid-level","link":"https://doda.jp/DodaFront/View/JobSearchDetail/j_jid__3015091072/","priority":"A"},{"company":"Netskope","domain":"netskope.com","title":"Solution Architect","employer_type":"Vendor","salary_min":35.0,"salary_max":35.0,"salary":"¥35M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Security Architecture","Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1G0CqUTF4baj6vp4RfiM2AM_5uoDFDrkQ/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"B"},{"company":"NFlabs","domain":"nflabs.jp","title":"Software Security Engineer (Training content Developer)","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000042","priority":"A"},{"company":"NFlabs","domain":"nflabs.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000042","priority":"A"},{"company":"NFlabs","domain":"nflabs.jp","title":"Security Trainer","employer_type":"Internal","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Project Management"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000041","priority":"B"},{"company":"Nihon Keizai Shimbum (Nikkei)","domain":"nikkei.co.jp","title":"CSIRT","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Tokyo","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://r.nikkei.com/career/","priority":"B"},{"company":"Nomura","domain":"nomura.com","title":"Security Architect / Engineer","employer_type":"Internal","salary_min":24.0,"salary_max":24.0,"salary":"¥24M","remote":"4 days remote","location":"Toyosu","jp":"Conversational","en":"Fluent","tags":["Security Architecture"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Olympus","domain":"olympus.co.jp","title":"IR Engineer","employer_type":"Internal","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Fluent","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"Olympus","domain":"olympus.co.jp","title":"Senior IT Security GRC Analyst (Senior Expert)","employer_type":"Internal","salary_min":15.7,"salary_max":15.7,"salary":"¥15.7M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Fluent","tags":["GRC & Governance"],"seniority":"Senior","link":"","priority":"B"},{"company":"Orix","domain":"orix.co.jp","title":"Leader, Governance","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://www.orix.co.jp/grp/company/recruit/","priority":"B"},{"company":"Paidy","domain":"paidy.com","title":"AppSec & Vulnerability Management - VM","employer_type":"Technology","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"4 days remote","location":"Tokyo (area TBC)","jp":"Business","en":"Business","tags":["Product & AppSec","Vulnerability Management"],"seniority":"Mid-level","link":"https://corp.paidy.com/media_center/work_life/recruitment/job/7742390003","priority":"B"},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Prisma Browser Domain Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Conversational","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://drive.google.com/file/d/1pdxMLp9a8CSbrsBW1-2gptKoeqqG3k57/view?usp=sharing","priority":"B"},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Cortex Domain Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Conversational","tags":["SOC & Incident Response","Cloud Security","Security Architecture","Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1oZmf-WDTqbq69Q5FuU86qqo-tCWGtTaw/edit","priority":"B"},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Solution Consultant MA2 (Retail)","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Conversational","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1IzP8bGODf2DJGucqwbE0Hsb9gcnBb_Xe/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"B"},{"company":"Paypay Bank","domain":"paypay-bank.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://www.paypay-bank.co.jp/company/recruit/","priority":"B"},{"company":"Protiviti","domain":"protiviti.com","title":"Security Consultant (Associate to Senior Manager)","employer_type":"Consulting","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"4 days remote","location":"Tokyo","jp":"Business","en":"Fluent","tags":["Consulting"],"seniority":"Senior","link":"https://www.protiviti.com/jp-jp/experienced-professionals-our-recruiting-process","priority":"B"},{"company":"Rapid7","domain":"rapid7.com","title":"Senior Cybersecurity Advisor","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","Cloud Security","Pre-sales"],"seniority":"Senior","link":"https://docs.google.com/document/d/1CNomE8eLmtoFbNAZz4Wh8qFuovpFDpN9/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"A"},{"company":"Re-grit Partners","domain":"re-grit.com","title":"Director","employer_type":"Consulting","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Consulting"],"seniority":"Leadership","link":"https://regrit-p.com/about/","priority":"A"},{"company":"Re-grit Partners","domain":"re-grit.com","title":"Senior Consultant","employer_type":"Consulting","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Consulting"],"seniority":"Senior","link":"https://regrit-p.com/about/","priority":"A"},{"company":"SaCuRa KF","domain":"","title":"Security Consulting Leader","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Remote friendly","location":"Marunouchi or remote","jp":"Native","en":"Not specified","tags":["SOC & Incident Response","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1WZKdcVvZkpjRdZ4zBQnAkdn3_8KdYSsFTUe7Mw6X2BA/edit?usp=sharing","priority":"A"},{"company":"SaCuRa KF","domain":"","title":"Security Consultant","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Marunouchi or remote","jp":"Native","en":"Not specified","tags":["SOC & Incident Response","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1WZKdcVvZkpjRdZ4zBQnAkdn3_8KdYSsFTUe7Mw6X2BA/edit?usp=sharing","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"CISO","employer_type":"Technology","salary_min":75.0,"salary_max":75.0,"salary":"¥75M","remote":"Ask","location":"Azabudai","jp":"Native","en":"Business","tags":["AI Security"],"seniority":"Leadership","link":"","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Project Manager - Finance","employer_type":"Technology","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security","Project Management"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-finance/","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Project Manager - Defence","employer_type":"Technology","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security","Project Management"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-defense/","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Engineer","employer_type":"Technology","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security"],"seniority":"Mid-level","link":"https://sakana.ai/careers/cybersecurity-engineer/","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"Project Manager, Cybersecurity and Defence","employer_type":"Vendor","salary_min":null,"salary_max":null,"salary":"Ask","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Pre-sales"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-defense/","priority":"A"},{"company":"Sakana AI","domain":"sakana.ai","title":"Project Manager, Cybersecurity and Finance","employer_type":"Vendor","salary_min":null,"salary_max":null,"salary":"Ask","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Pre-sales"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-finance/","priority":"A"},{"company":"SanSan","domain":"sansan.com","title":"Product Security Manager","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Senior","link":"https://open.talentio.com/r/1/c/sansan/pages/76590","priority":"B"},{"company":"SanSan","domain":"sansan.com","title":"SOC/CSIRT","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/sansan/pages/76586","priority":"B"},{"company":"SanSan","domain":"sansan.com","title":"Information Security Manager","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Senior","link":"https://open.talentio.com/r/1/c/sansan/pages/85042","priority":"B"},{"company":"Simpleform","domain":"","title":"Product Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Product & AppSec","Cloud Security"],"seniority":"Mid-level","link":"","priority":"B"},{"company":"SmartHR","domain":"smarthr.co.jp","title":"Information Security Specialist","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"4 days remote","location":"Roppongi Itchome","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/smarthr/pages/72384","priority":"A"},{"company":"SmartHR","domain":"smarthr.co.jp","title":"Vulnerability Assessment Engineer (Red)","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","Vulnerability Management"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/smarthr/pages/107672","priority":"B"},{"company":"Solize","domain":"solize.com","title":"Security Consultant (Automotives)","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","OT, IoT & Automotive","Consulting"],"seniority":"Mid-level","link":"https://hrmos.co/pages/ureka/jobs/CS_1003","priority":"B"},{"company":"Sompo","domain":"sompo-hd.com","title":"SOC/Threat intelligence (Blue team)","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://herp.careers/v1/sompo","priority":"A"},{"company":"Sompo (Assigned to group company)","domain":"sompo-hd.com","title":"Security Strategy","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"","priority":"A"},{"company":"Sony","domain":"sony.com","title":"GSIRT Detection and Response (IR focus)","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["SOC & Incident Response","GRC & Governance"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134","priority":"A"},{"company":"Sony","domain":"sony.com","title":"GSIRT Project Manager","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance"],"seniority":"Senior","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134","priority":"A"},{"company":"Sony","domain":"sony.com","title":"Cloud Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance","Cloud Security"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134","priority":"A"},{"company":"Sony","domain":"sony.com","title":"Internal Security Consultant","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134","priority":"A"},{"company":"Sony Semi Conductor Solutions","domain":"sony-semicon.com","title":"Incident Response","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","Vulnerability Management"],"seniority":"Mid-level","link":"https://careers.sss.sony.com/","priority":"B"},{"company":"Surugaya (Mercari)","domain":"suruga-ya.jp","title":"Security Generalist","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"3 days remote","location":"Shizuoka","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Identity & Access","Security Architecture"],"seniority":"Mid-level","link":"https://www.suruga-ya.co.jp/recruit/","priority":"B"},{"company":"Trust","domain":"","title":"Partner OR Director","employer_type":"Consulting","salary_min":22.0,"salary_max":22.0,"salary":"¥22M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Leadership","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing","priority":"B"},{"company":"Trust","domain":"","title":"Senior Consultant, Consultant","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Senior","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing","priority":"B"},{"company":"Trust","domain":"","title":"Senior Manager, Manager","employer_type":"Consulting","salary_min":8.0,"salary_max":8.0,"salary":"¥8M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Senior","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing","priority":"B"},{"company":"Ubie","domain":"ubie.life","title":"Product Security Engineer","employer_type":"Internal","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Shin-Nihonbashi","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://herp.careers/v1/ubiehr/cQ6vihXLiMLg","priority":"A"},{"company":"Ubie","domain":"ubie.life","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Shin-Nihonbashi","jp":"Native","en":"Not specified","tags":["AI Security"],"seniority":"Mid-level","link":"https://herp.careers/v1/ubiehr/cQ6vihXLiMLg","priority":"A"},{"company":"Wave XROSS","domain":"","title":"Awareness Training C-SC","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1VxQXTEQ-7yNalwpzzHkl0R61N9zdtnvn/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"B"},{"company":"Zein","domain":"","title":"Security Solution Consultant (Architect)","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Network & Infrastructure","Security Architecture","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1Wyq7V5Z4oV4eQq9kMEgqyIUTiIVqyB7p/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true","priority":"B"}];
-const COMPANIES = {"Andpad":{"sector":"Construction SaaS","desc":"Cloud platform used to manage Japanese building and construction sites.","roles":2},"BASE":{"sector":"E-commerce","desc":"E-commerce platform that lets small merchants open and run their own online shops.","roles":1},"BayCurrent":{"sector":"Consulting","desc":"Japan's largest home-grown management consulting firm. TSE listed.","roles":1},"Benesse":{"sector":"Education","desc":"Education and nursing care group. Best known for the Shinkenzemi home study courses.","roles":1},"Broadband Security":{"sector":"Security vendor","desc":"Japanese security services company. Vulnerability assessment, penetration testing and PCI DSS work.","roles":2},"Carenet":{"sector":"Healthcare media","desc":"Medical information and e-learning platform used by doctors in Japan.","roles":1},"Chubb":{"sector":"Insurance","desc":"Global property and casualty insurer, listed in New York.","roles":1},"Coupang (Rocket One)":{"sector":"E-commerce","desc":"Korean e-commerce group, listed in New York, now building out its Japan operation.","roles":1},"CrowdStrike":{"sector":"Security vendor","desc":"US endpoint and cloud security vendor behind the Falcon platform.","roles":1},"Cyber Defense":{"sector":"Security vendor","desc":"Japanese security specialist covering penetration testing, digital forensics and incident response.","roles":4},"Dai-Ichi Life":{"sector":"Insurance","desc":"One of Japan's largest life insurance groups. TSE listed.","roles":2},"Deloitte":{"sector":"Consulting","desc":"Big Four professional services firm. The cyber practice covers red team, incident response and advisory.","roles":1},"Deloitte DTCY Multi Team":{"sector":"Consulting","desc":"Deloitte Tohmatsu Cyber, the dedicated cyber security arm of Deloitte in Japan.","roles":2},"Deloitte Financial Advisory":{"sector":"Consulting","desc":"Deloitte Tohmatsu Financial Advisory. Forensics, financial crime and investigation work.","roles":1},"Dolbix":{"sector":"Consulting","desc":"","roles":1},"Dolbix Consulting":{"sector":"Consulting","desc":"","roles":2},"Enechain":{"sector":"Energy trading","desc":"Startup running Japan's marketplaces for electricity and environmental value trading.","roles":2},"Exawizards":{"sector":"AI","desc":"AI company, TSE listed. Builds AI services for industry, healthcare and the public sector.","roles":3},"FFRI Security":{"sector":"Security vendor","desc":"Japanese cyber security research and product company. TSE listed. Endpoint security and threat research.","roles":2},"FFRI Security Works":{"sector":"Security vendor","desc":"Service arm of FFRI Security. Assessment and penetration testing delivery.","roles":1},"Fenix24":{"sector":"Security vendor","desc":"US incident recovery specialist. Restores systems and networks after ransomware attacks.","roles":1},"Flatt Security":{"sector":"Security startup","desc":"Japanese security startup focused on web and cloud application assessment.","roles":1},"Geniee":{"sector":"Ad tech","desc":"Ad platform, marketing SaaS and digital PR company. TSE listed since 2017. Pays for AI tools for engineers.","roles":1},"HRBrain":{"sector":"HR SaaS","desc":"HR software company. Performance management and talent systems for Japanese employers.","roles":2},"Intloop":{"sector":"Consulting","desc":"Japanese consulting and professional services firm.","roles":1},"KPMG Ignition KIT":{"sector":"Consulting","desc":"KPMG Ignition Tokyo, the technology and product development arm of KPMG Japan.","roles":1},"LegalOntechnologies":{"sector":"Legal tech","desc":"LegalOn Technologies. AI contract review software used widely by Japanese legal teams.","roles":3},"LineYahoo":{"sector":"Internet","desc":"LY Corporation. Japan's largest internet group, formed by the merger of LINE and Yahoo Japan.","roles":1},"Looop":{"sector":"Energy","desc":"Renewable energy company. Solar power and retail electricity supply in Japan.","roles":1},"MBSD":{"sector":"Security vendor","desc":"Mitsui Bussan Secure Directions. Security assessment and consulting arm of the Mitsui group.","roles":7},"MS&AD Holdings (Mitsui Sumitomo)":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups.","roles":2},"Mercari":{"sector":"Internet","desc":"Japan's largest C2C marketplace. TSE listed. Also runs the Merpay and Mercoin fintech businesses.","roles":2},"Metlife":{"sector":"Insurance","desc":"US life insurance group. MetLife Japan is one of the largest foreign insurers in the market.","roles":1},"Mizuho":{"sector":"Banking","desc":"One of Japan's three megabanks. Banking, trust and securities under one group.","roles":2},"NFlabs":{"sector":"Security vendor","desc":"Security training and assessment specialist. Builds CTF and hands-on cyber training content.","roles":3},"Netskope":{"sector":"Security vendor","desc":"US cloud security vendor. SASE, secure web gateway and data protection.","roles":1},"Nihon Keizai Shimbum (Nikkei)":{"sector":"Media","desc":"Nikkei. Japan's leading business newspaper and financial media group.","roles":1},"Nomura":{"sector":"Banking","desc":"Nomura Holdings. Japan's largest investment bank and securities firm.","roles":1},"Olympus":{"sector":"Medical devices","desc":"Global medical technology company, best known for endoscopes.","roles":2},"Orix":{"sector":"Financial services","desc":"Diversified financial group. Leasing, banking, real estate and asset management.","roles":1},"Paidy":{"sector":"Fintech","desc":"Buy now pay later service in Japan. Part of PayPal since 2021.","roles":1},"Palo Alto":{"sector":"Security vendor","desc":"Palo Alto Networks. US network and cloud security vendor. Prisma and Cortex product lines.","roles":3},"Paypay Bank":{"sector":"Banking","desc":"Digital bank in the SoftBank and PayPay group.","roles":1},"Protiviti":{"sector":"Consulting","desc":"Global risk, internal audit and technology consulting firm.","roles":1},"Rapid7":{"sector":"Security vendor","desc":"US security vendor. Vulnerability management, detection and response, and MDR services.","roles":1},"Re-grit Partners":{"sector":"Consulting","desc":"Japanese IT and management consulting firm.","roles":2},"SaCuRa KF":{"sector":"Consulting","desc":"","roles":2},"Sakana AI":{"sector":"AI","desc":"Tokyo AI research company founded in 2023. Builds foundation models and works with government and enterprise partners.","roles":6},"SanSan":{"sector":"SaaS","desc":"Business card and contact management SaaS. TSE listed. Also runs the Bill One invoice product.","roles":3},"Simpleform":{"sector":"SaaS","desc":"","roles":1},"SmartHR":{"sector":"HR SaaS","desc":"Cloud HR and labour management software used by Japanese employers.","roles":2},"Solize":{"sector":"Engineering services","desc":"Engineering services firm working with Japanese manufacturers, especially automotive.","roles":1},"Sompo":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups.","roles":1},"Sompo (Assigned to group company)":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups. This role sits in a group company.","roles":1},"Sony":{"sector":"Electronics","desc":"Global electronics, entertainment and gaming group. These roles sit in the global CSIRT and internal security functions.","roles":4},"Sony Semi Conductor Solutions":{"sector":"Semiconductors","desc":"Sony's semiconductor business. World leader in image sensors.","roles":1},"Surugaya (Mercari)":{"sector":"Retail","desc":"Second-hand hobby, game and media retailer based in Shizuoka.","roles":1},"Trust":{"sector":"Consulting","desc":"","roles":3},"Ubie":{"sector":"Health tech","desc":"Healthcare AI startup. Symptom checker for patients and software for hospitals.","roles":2},"Wave XROSS":{"sector":"Consulting","desc":"","roles":1},"Zein":{"sector":"Consulting","desc":"","roles":1}};
+const ROLES = [{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Project Manager - Finance","employer_type":"Technology","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security","Project Management"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-finance/"},{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Project Manager - Defence","employer_type":"Technology","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security","Project Management"],"seniority":"Senior","link":"https://sakana.ai/careers/business-role-project-manager-cybersecurity-defense/"},{"company":"Fenix24","domain":"fenix24.com","title":"Country Lead","employer_type":"Vendor","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Fluent","tags":["SOC & Incident Response","Pre-sales"],"seniority":"Leadership","link":"https://docs.google.com/document/d/1MfGcwQmCWu3HeiDSgcpLNVunn8brSDv2Hcep9EOxVa4/edit?usp=sharing"},{"company":"Re-grit Partners","domain":"re-grit.com","title":"Director","employer_type":"Consulting","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Consulting"],"seniority":"Leadership","link":"https://regrit-p.com/about/"},{"company":"Ubie","domain":"ubie.life","title":"Product Security Engineer","employer_type":"Internal","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Shin-Nihonbashi","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://herp.careers/v1/ubiehr/cQ6vihXLiMLg"},{"company":"Ubie","domain":"ubie.life","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Shin-Nihonbashi","jp":"Native","en":"Not specified","tags":["AI Security"],"seniority":"Mid-level","link":"https://herp.careers/v1/ubiehr/cQ6vihXLiMLg"},{"company":"Deloitte DTCY Multi Team","domain":"deloitte.com","title":"Manager","employer_type":"Consulting","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Remote friendly","location":"Nijubashimae","jp":"Fluent","en":"Fluent","tags":["SOC & Incident Response","GRC & Governance","Consulting"],"seniority":"Senior","link":"https://docs.google.com/document/d/1mY2k4LWro_f9VBnEe-55cTD2o0DdtkPA/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"Rapid7","domain":"rapid7.com","title":"Senior Cybersecurity Advisor","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","Cloud Security","Pre-sales"],"seniority":"Senior","link":"https://docs.google.com/document/d/1CNomE8eLmtoFbNAZz4Wh8qFuovpFDpN9/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"Dolbix Consulting","domain":"","title":"Technical Leader","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/11972IzttMSJKvSJ6yv0rIKBiPRfXD1QrGHZqdThm7uE/edit?tab=t.0"},{"company":"SaCuRa KF","domain":"","title":"Security Consulting Leader","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Remote friendly","location":"Marunouchi or remote","jp":"Native","en":"Not specified","tags":["SOC & Incident Response","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1WZKdcVvZkpjRdZ4zBQnAkdn3_8KdYSsFTUe7Mw6X2BA/edit?usp=sharing"},{"company":"Sakana AI","domain":"sakana.ai","title":"Cybersecurity Engineer","employer_type":"Technology","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Azabudai","jp":"Fluent","en":"Business","tags":["AI Security"],"seniority":"Mid-level","link":"https://sakana.ai/careers/cybersecurity-engineer/"},{"company":"SmartHR","domain":"smarthr.co.jp","title":"Information Security Specialist","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"4 days remote","location":"Roppongi Itchome","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/smarthr/pages/72384"},{"company":"Sompo (Assigned to group company)","domain":"sompo-hd.com","title":"Security Strategy","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":""},{"company":"Deloitte Financial Advisory","domain":"deloitte.com","title":"Senior Consultant to Manager","employer_type":"Consulting","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"Remote friendly","location":"Nijubashimae","jp":"Native","en":"Either","tags":["SOC & Incident Response","Consulting"],"seniority":"Senior","link":"https://www.deloitte.com/jp/ja/services/consulting/services/deloitte-forensic.html"},{"company":"Exawizards","domain":"exawizards.com","title":"Pentest / Application Security Engineer","employer_type":"Technology","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/exwzd/pages/121969"},{"company":"Mizuho","domain":"mizuho-fg.co.jp","title":"Cyber Security Engineer","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://www.mizuho-fg.co.jp/saiyou/career_recruit/index.html"},{"company":"MS&AD Holdings (Mitsui Sumitomo)","domain":"ms-ad-hd.com","title":"Global Cyber Security Strategist","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Business","en":"Business","tags":["SOC & Incident Response","Network & Infrastructure"],"seniority":"Mid-level","link":""},{"company":"Flatt Security","domain":"flatt.tech","title":"Security VA Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://recruit.flatt.tech/job/security_engineer"},{"company":"MS&AD Holdings (Mitsui Sumitomo)","domain":"ms-ad-hd.com","title":"Cyber Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Network & Infrastructure"],"seniority":"Mid-level","link":""},{"company":"Sompo","domain":"sompo-hd.com","title":"SOC/Threat intelligence (Blue team)","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://herp.careers/v1/sompo"},{"company":"Sony","domain":"sony.com","title":"GSIRT Detection and Response (IR focus)","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["SOC & Incident Response","GRC & Governance"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134"},{"company":"Sony","domain":"sony.com","title":"GSIRT Project Manager","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance"],"seniority":"Senior","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134"},{"company":"Sony","domain":"sony.com","title":"Cloud Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance","Cloud Security"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134"},{"company":"Sony","domain":"sony.com","title":"Internal Security Consultant","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Shinagawa","jp":"Native","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://app.zookeep.com/career/sonygroupcorp/hqsec_r023-9134"},{"company":"Deloitte DTCY Multi Team","domain":"deloitte.com","title":"Consultant to Senior Consultant","employer_type":"Consulting","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Remote friendly","location":"Nijubashimae","jp":"Fluent","en":"Fluent","tags":["Consulting"],"seniority":"Senior","link":"https://docs.google.com/document/d/1mY2k4LWro_f9VBnEe-55cTD2o0DdtkPA/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"NFlabs","domain":"nflabs.jp","title":"Software Security Engineer (Training content Developer)","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000042"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Red Teamer","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Infrastructure Engineer","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Identity & Access","Network & Infrastructure"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"DFIR (Digital Forensics and Incident Response)","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/"},{"company":"Cyber Defense","domain":"cyberdefense.jp","title":"Hardware Security Engineer (Embedded and IoT systems)","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["OT, IoT & Automotive"],"seniority":"Mid-level","link":"https://www.cyberdefense.jp/recruit/"},{"company":"Dolbix Consulting","domain":"","title":"Governance Staff (C to SC)","employer_type":"Consulting","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/11972IzttMSJKvSJ6yv0rIKBiPRfXD1QrGHZqdThm7uE/edit?tab=t.0"},{"company":"Broadband Security","domain":"bbsec.co.jp","title":"Sales Manager","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Ask","location":"Shinjuku","jp":"Native","en":"Not specified","tags":["Sales"],"seniority":"Senior","link":""},{"company":"Enechain","domain":"enechain.co.jp","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Omotesando","jp":"Native","en":"Conversational","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://herp.careers/v1/enechain/Ib_zWULUAk6p"},{"company":"Enechain","domain":"enechain.co.jp","title":"AI Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Omotesando","jp":"Native","en":"Either","tags":["AI Security"],"seniority":"Mid-level","link":"https://herp.careers/v1/enechain/gjR7FOv2T15X"},{"company":"NFlabs","domain":"nflabs.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000042"},{"company":"SaCuRa KF","domain":"","title":"Security Consultant","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Marunouchi or remote","jp":"Native","en":"Not specified","tags":["SOC & Incident Response","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1WZKdcVvZkpjRdZ4zBQnAkdn3_8KdYSsFTUe7Mw6X2BA/edit?usp=sharing"},{"company":"Broadband Security","domain":"bbsec.co.jp","title":"Security Engineer (Pentest)","employer_type":"Consulting","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"Ask","location":"Shinjuku","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1Xp7p5aSMhGrb3BWjfIkFzjeu5jCIJaXXgqgoTBBJIwQ/edit?tab=t.0"},{"company":"Re-grit Partners","domain":"re-grit.com","title":"Senior Consultant","employer_type":"Consulting","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Consulting"],"seniority":"Senior","link":"https://regrit-p.com/about/"},{"company":"Dolbix","domain":"","title":"Platform Assessment Engineer (Red/Penetration)","employer_type":"Consulting","salary_min":8.0,"salary_max":8.0,"salary":"¥8M","remote":"Ask","location":"Nihonbashi","jp":"Fluent","en":"Either","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":""},{"company":"Netskope","domain":"netskope.com","title":"Solution Architect","employer_type":"Vendor","salary_min":35.0,"salary_max":35.0,"salary":"¥35M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Security Architecture","Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1G0CqUTF4baj6vp4RfiM2AM_5uoDFDrkQ/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"BayCurrent","domain":"baycurrent.co.jp","title":"Senior Consultant to Associate Partner","employer_type":"Consulting","salary_min":10.0,"salary_max":30.0,"salary":"¥10M to ¥30M+","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Red Team & Pentest","SOC & Incident Response","GRC & Governance","Consulting"],"seniority":"Leadership","link":""},{"company":"Coupang (Rocket One)","domain":"coupang.com","title":"Director, Privacy (Japan)","employer_type":"Internal","salary_min":30.0,"salary_max":30.0,"salary":"¥30M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Privacy","Project Management"],"seniority":"Leadership","link":"https://www.coupang.jobs/jp/jobs/7839809/director-security-engineering/?gh_jid=7839809"},{"company":"Metlife","domain":"metlife.co.jp","title":"AVP Information Security Governance (reopen)","employer_type":"Internal","salary_min":30.0,"salary_max":30.0,"salary":"¥30M","remote":"2 days remote","location":"Kinshicho","jp":"Fluent","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":""},{"company":"Intloop","domain":"intloop.com","title":"Director","employer_type":"Consulting","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Cloud Security","Identity & Access","Consulting"],"seniority":"Leadership","link":"https://www.intloop.com/recruit/career/business/"},{"company":"SanSan","domain":"sansan.com","title":"Product Security Manager","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Senior","link":"https://open.talentio.com/r/1/c/sansan/pages/76590"},{"company":"SanSan","domain":"sansan.com","title":"SOC/CSIRT","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/sansan/pages/76586"},{"company":"SanSan","domain":"sansan.com","title":"Information Security Manager","employer_type":"Internal","salary_min":25.0,"salary_max":25.0,"salary":"¥25M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Senior","link":"https://open.talentio.com/r/1/c/sansan/pages/85042"},{"company":"Nomura","domain":"nomura.com","title":"Security Architect / Engineer","employer_type":"Internal","salary_min":24.0,"salary_max":24.0,"salary":"¥24M","remote":"4 days remote","location":"Toyosu","jp":"Conversational","en":"Fluent","tags":["Security Architecture"],"seniority":"Mid-level","link":""},{"company":"Trust","domain":"","title":"Partner OR Director","employer_type":"Consulting","salary_min":22.0,"salary_max":22.0,"salary":"¥22M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Leadership","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing"},{"company":"Geniee","domain":"geniee.co.jp","title":"CISO候補 Director","employer_type":"Consulting","salary_min":20.0,"salary_max":20.0,"salary":"¥20M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Leadership","link":"https://geniee.co.jp/recruit/"},{"company":"CrowdStrike","domain":"crowdstrike.com","title":"PreSales Engineer (High Touch)","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers/details/Regional-Sales-Engineer_R27946-1?source=google_ppc&gad_source=1&locationCountry=8b705da2becf43cfaccc091da0988ab2"},{"company":"Dai-Ichi Life","domain":"dai-ichi-life.co.jp","title":"Security Manager for either Security Operations, Governance, Strategy","employer_type":"Internal","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","GRC & Governance"],"seniority":"Senior","link":""},{"company":"MBSD","domain":"mbsd.jp","title":"Senior Security Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Security Engineering"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000003"},{"company":"MBSD","domain":"mbsd.jp","title":"Security Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Business","tags":["Consulting"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000002"},{"company":"Olympus","domain":"olympus.co.jp","title":"IR Engineer","employer_type":"Internal","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Fluent","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":""},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Prisma Browser Domain Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Conversational","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://drive.google.com/file/d/1pdxMLp9a8CSbrsBW1-2gptKoeqqG3k57/view?usp=sharing"},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Cortex Domain Consultant","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Conversational","tags":["SOC & Incident Response","Cloud Security","Security Architecture","Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1oZmf-WDTqbq69Q5FuU86qqo-tCWGtTaw/edit"},{"company":"Palo Alto","domain":"paloaltonetworks.com","title":"Solution Consultant MA2 (Retail)","employer_type":"Vendor","salary_min":18.0,"salary_max":18.0,"salary":"¥18M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Conversational","tags":["Pre-sales"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1IzP8bGODf2DJGucqwbE0Hsb9gcnBb_Xe/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"Deloitte","domain":"deloitte.com","title":"Red Team Senior Manager - Senior Consultant","employer_type":"Consulting","salary_min":8.0,"salary_max":17.0,"salary":"¥8M to ¥17M","remote":"4 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Conversational","tags":["Red Team & Pentest","Consulting"],"seniority":"Senior","link":"https://deloittejapan.jposting.net/job_search/job_detaile.phtml?rpc=&cc=3&csc=&pf=1&sc=27&p=2&ap=2&mjs=&sk=&jc=1042&pf=1"},{"company":"Chubb","domain":"chubb.com","title":"Information Security Manager and Cyber Transformation Lead","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"1 days remote","location":"Shinagawa","jp":"Business","en":"Business","tags":["GRC & Governance"],"seniority":"Senior","link":"https://www.linkedin.com/jobs/view/4440919042/?alternateChannel=search&eBP=CwEAAAGfs00KGji8p2V_R9Gy_2HhDhXRlJZmIKVZ6leaoVSkB-5wD5xANn81y8_ZPAsnvvFAJrO0wDzdJYtYqItqbeYxSBVjsk3MuzW6NUu4gwDHWlD0o9FPyCF7Je0OJLUbzHA0T7GLET52A3jpk3mShK8xOQCb8z83VjsbED0rtSh0U3bDAqejPuUHDM81DRWim2Ietk7ZD3VKOMEEiP6wOY2vhDMhksw55xs6OAwGaIm1B6Wd5mqBLLTatAt5CeWuBtBXGFD_4QTmitGe2EIFM_uMtVGzyjGuCT8nczjqXk9FJDcDF7-dixuKH7GgjsZ2sjjdeXjP5Ox8PgYsn5Y_tNMKxA7eXBLBcrOlhOegmLPiWWmOiXqHg9kWfFAOj-pVse49_iqZT8hJK9rLftIEDeZRQj4x9ro4Zz2_6LrvQu7j5D85Fzrz8PnzFFgvGdkRFylwBNw&refId=mM1SmXBc20r3GKAnpNoaXQ%3D%3D&trackingId=l9x64wB3%2FOr0sdqY%2F%2BUHhQ%3D%3D"},{"company":"Dai-Ichi Life","domain":"dai-ichi-life.co.jp","title":"Cyber Security (Specialist/Non-Management)","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"2 days remote","location":"Hibiya","jp":"Fluent","en":"Business","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":""},{"company":"LineYahoo","domain":"lycorp.co.jp","title":"Security PM","employer_type":"Internal","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"Ask","location":"Yotsuya","jp":"Native","en":"Not specified","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://hrmos.co/pages/neoarc"},{"company":"Mercari","domain":"mercari.com","title":"Security Management Specialist - Merpay/Mercoin","employer_type":"Technology","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"4 days remote","location":"Roppongi","jp":"Native","en":"Conversational","tags":["GRC & Governance","Cloud Security"],"seniority":"Mid-level","link":"https://apply.workable.com/mercari/j/2DD18A13EB"},{"company":"Protiviti","domain":"protiviti.com","title":"Security Consultant (Associate to Senior Manager)","employer_type":"Consulting","salary_min":16.0,"salary_max":16.0,"salary":"¥16M","remote":"4 days remote","location":"Tokyo","jp":"Business","en":"Fluent","tags":["Consulting"],"seniority":"Senior","link":"https://www.protiviti.com/jp-jp/experienced-professionals-our-recruiting-process"},{"company":"Olympus","domain":"olympus.co.jp","title":"Senior IT Security GRC Analyst (Senior Expert)","employer_type":"Internal","salary_min":15.7,"salary_max":15.7,"salary":"¥15.7M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Fluent","tags":["GRC & Governance"],"seniority":"Senior","link":""},{"company":"Looop","domain":"looop.co.jp","title":"IT Governance Manager (OR Product Security)","employer_type":"Internal","salary_min":15.5,"salary_max":15.5,"salary":"¥15.5M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["GRC & Governance","Product & AppSec"],"seniority":"Senior","link":""},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"Corporate Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","SOC & Incident Response","Vulnerability Management"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/idSKIa8X_III"},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","SOC & Incident Response","Product & AppSec","Vulnerability Management"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/dSY1VUXgqIHy"},{"company":"MBSD","domain":"mbsd.jp","title":"Assessment Engineer (Consulting Service BU) TLPT","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Red Team & Pentest"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000010"},{"company":"MBSD","domain":"mbsd.jp","title":"Assessment Engineer (Technical Service BU)","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Product & AppSec"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000011"},{"company":"MBSD","domain":"mbsd.jp","title":"Project Manager (WebApp/Mobile Assessment)","employer_type":"Vendor","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Product & AppSec","Project Management"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000014"},{"company":"Mizuho","domain":"mizuho-fg.co.jp","title":"Information Security Governance (Leader to junior)","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://www.mizuho-fg.co.jp/saiyou/career_recruit/index.html"},{"company":"Simpleform","domain":"","title":"Product Security Engineer","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Product & AppSec","Cloud Security"],"seniority":"Mid-level","link":""},{"company":"Solize","domain":"solize.com","title":"Security Consultant (Automotives)","employer_type":"Internal","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","OT, IoT & Automotive","Consulting"],"seniority":"Mid-level","link":"https://hrmos.co/pages/ureka/jobs/CS_1003"},{"company":"Zein","domain":"","title":"Security Solution Consultant (Architect)","employer_type":"Consulting","salary_min":15.0,"salary_max":15.0,"salary":"¥15M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Network & Infrastructure","Security Architecture","Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1Wyq7V5Z4oV4eQq9kMEgqyIUTiIVqyB7p/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"Orix","domain":"orix.co.jp","title":"Leader, Governance","employer_type":"Internal","salary_min":14.0,"salary_max":14.0,"salary":"¥14M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://www.orix.co.jp/grp/company/recruit/"},{"company":"HRBrain","domain":"hrbrain.co.jp","title":"Enterprise Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Mita","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Cloud Security","Identity & Access","Security Architecture"],"seniority":"Mid-level","link":"https://hrmos.co/pages/hrbrain/jobs/26010501"},{"company":"HRBrain","domain":"hrbrain.co.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"4 days remote","location":"Mita","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","Product & AppSec"],"seniority":"Mid-level","link":"https://hrmos.co/pages/hrbrain/jobs/26010502"},{"company":"MBSD","domain":"mbsd.jp","title":"AI Security Engineer (Junior to Senior)","employer_type":"Vendor","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["AI Security"],"seniority":"Senior","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000026"},{"company":"Sony Semi Conductor Solutions","domain":"sony-semicon.com","title":"Incident Response","employer_type":"Internal","salary_min":13.0,"salary_max":13.0,"salary":"¥13M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Business","tags":["SOC & Incident Response","Vulnerability Management"],"seniority":"Mid-level","link":"https://careers.sss.sony.com/"},{"company":"Benesse","domain":"benesse.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":12.7,"salary_max":12.7,"salary":"¥12.7M","remote":"Ask","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response","Identity & Access"],"seniority":"Mid-level","link":""},{"company":"BASE","domain":"binc.jp","title":"CSIRT","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Tokyo","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/binc/pages/102966"},{"company":"Carenet","domain":"carenet.co.jp","title":"Product Security Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Ask","location":"Iidabashi","jp":"Native","en":"Not specified","tags":["Product & AppSec","Cloud Security"],"seniority":"Mid-level","link":"https://hrmos.co/pages/neoarc"},{"company":"Exawizards","domain":"exawizards.com","title":"IT Governance Specialist","employer_type":"Technology","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["GRC & Governance"],"seniority":"Mid-level","link":""},{"company":"Exawizards","domain":"exawizards.com","title":"SOC and EDR Specialist","employer_type":"Technology","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Shibaura","jp":"Business","en":"Business","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/exwzd/pages/121972"},{"company":"FFRI Security","domain":"ffri.co.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/2199803?hide_breadcrumb=false&hide_search=false"},{"company":"FFRI Security","domain":"ffri.co.jp","title":"Security PM","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/1674595?hide_breadcrumb=false&hide_search=false"},{"company":"FFRI Security Works","domain":"ffri.co.jp","title":"Vulnerability Assessment/ Pentester (Red)","employer_type":"Vendor","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Network & Infrastructure"],"seniority":"Mid-level","link":"https://recruit.jobcan.jp/ffri/job_offers/2220799?hide_breadcrumb=false&hide_search=false"},{"company":"KPMG Ignition KIT","domain":"kpmg.com","title":"Senior Site Reliability Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Otemachi","jp":"Business","en":"Fluent","tags":["Security Engineering"],"seniority":"Senior","link":""},{"company":"Nihon Keizai Shimbum (Nikkei)","domain":"nikkei.co.jp","title":"CSIRT","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"3 days remote","location":"Tokyo","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://r.nikkei.com/career/"},{"company":"Paypay Bank","domain":"paypay-bank.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://www.paypay-bank.co.jp/company/recruit/"},{"company":"SmartHR","domain":"smarthr.co.jp","title":"Vulnerability Assessment Engineer (Red)","employer_type":"Internal","salary_min":12.0,"salary_max":12.0,"salary":"¥12M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Not specified","tags":["Red Team & Pentest","Vulnerability Management"],"seniority":"Mid-level","link":"https://open.talentio.com/r/1/c/smarthr/pages/107672"},{"company":"LegalOntechnologies","domain":"legalontech.jp","title":"IT Governance","employer_type":"Internal","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Ask","location":"Shibuya","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://herp.careers/v1/legalforce/8egEJTsR2Ist"},{"company":"MBSD","domain":"mbsd.jp","title":"SOC Development and Management","employer_type":"Vendor","salary_min":11.0,"salary_max":11.0,"salary":"¥11M","remote":"Fully remote","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["SOC & Incident Response"],"seniority":"Mid-level","link":"https://hrmos.co/pages/mbsd-recruit/jobs/V0000024"},{"company":"Andpad","domain":"andpad.co.jp","title":"Security Engineer","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["Security Engineering"],"seniority":"Mid-level","link":"https://hrmos.co/pages/andpad/jobs/140"},{"company":"Andpad","domain":"andpad.co.jp","title":"Security Promotion セキュリティー推進","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"Remote friendly","location":"Tokyo (area TBC)","jp":"Native","en":"Either","tags":["GRC & Governance","Project Management"],"seniority":"Mid-level","link":"https://hrmos.co/pages/andpad/jobs/cop0000432"},{"company":"Paidy","domain":"paidy.com","title":"AppSec & Vulnerability Management - VM","employer_type":"Technology","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"4 days remote","location":"Tokyo (area TBC)","jp":"Business","en":"Business","tags":["Product & AppSec","Vulnerability Management"],"seniority":"Mid-level","link":"https://corp.paidy.com/media_center/work_life/recruitment/job/7742390003"},{"company":"Surugaya (Mercari)","domain":"suruga-ya.jp","title":"Security Generalist","employer_type":"Internal","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"3 days remote","location":"Shizuoka","jp":"Fluent","en":"Not specified","tags":["SOC & Incident Response","Identity & Access","Security Architecture"],"seniority":"Mid-level","link":"https://www.suruga-ya.co.jp/recruit/"},{"company":"Trust","domain":"","title":"Senior Consultant, Consultant","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Senior","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing"},{"company":"Wave XROSS","domain":"","title":"Awareness Training C-SC","employer_type":"Consulting","salary_min":10.0,"salary_max":10.0,"salary":"¥10M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Consulting"],"seniority":"Mid-level","link":"https://docs.google.com/document/d/1VxQXTEQ-7yNalwpzzHkl0R61N9zdtnvn/edit?usp=sharing&ouid=100138177333979561672&rtpof=true&sd=true"},{"company":"NFlabs","domain":"nflabs.jp","title":"Security Trainer","employer_type":"Internal","salary_min":9.0,"salary_max":9.0,"salary":"¥9M","remote":"3 days remote","location":"Tokyo (area TBC)","jp":"Native","en":"Not specified","tags":["Red Team & Pentest","Project Management"],"seniority":"Mid-level","link":"https://hrmos.co/pages/nflabs0116/jobs/0000041"},{"company":"Trust","domain":"","title":"Senior Manager, Manager","employer_type":"Consulting","salary_min":8.0,"salary_max":8.0,"salary":"¥8M","remote":"2 days remote","location":"Tokyo (area TBC)","jp":"Fluent","en":"Either","tags":["Project Management"],"seniority":"Senior","link":"https://docs.google.com/document/d/1c-JeqAWXqHnAqRf_coWOKKpo6eeNdOTNn2yTvwQa2VA/edit?usp=sharing"},{"company":"Mercari","domain":"mercari.com","title":"IT Risk & Security Specialist - Merpay","employer_type":"Technology","salary_min":null,"salary_max":null,"salary":"Ask","remote":"4 days remote","location":"Roppongi","jp":"Fluent","en":"Not specified","tags":["GRC & Governance"],"seniority":"Mid-level","link":"https://apply.workable.com/mercari/j/C58376E7FA"}];
+const COMPANIES = {"Andpad":{"sector":"Construction SaaS","desc":"Cloud platform used to manage Japanese building and construction sites.","sector_ja":"建設SaaS","desc_ja":"建設現場の管理に使われるクラウドサービス。","roles":2},"BASE":{"sector":"E-commerce","desc":"E-commerce platform that lets small merchants open and run their own online shops.","sector_ja":"EC","desc_ja":"個人・小規模事業者向けのネットショップ作成サービス。","roles":1},"BayCurrent":{"sector":"Consulting","desc":"Japan's largest home-grown management consulting firm. TSE listed.","sector_ja":"コンサルティング","desc_ja":"日本発の総合コンサルティングファーム。東証上場。","roles":1},"Benesse":{"sector":"Education","desc":"Education and nursing care group. Best known for the Shinkenzemi home study courses.","sector_ja":"教育","desc_ja":"教育・介護事業を展開。進研ゼミで知られる。","roles":1},"Broadband Security":{"sector":"Security vendor","desc":"Japanese security services company. Vulnerability assessment, penetration testing and PCI DSS work.","sector_ja":"セキュリティベンダー","desc_ja":"脆弱性診断、ペネトレーションテスト、PCI DSS対応を手がける国内企業。","roles":2},"Carenet":{"sector":"Healthcare media","desc":"Medical information and e-learning platform used by doctors in Japan.","sector_ja":"医療メディア","desc_ja":"医師向けの医療情報・eラーニングサービス。","roles":1},"Chubb":{"sector":"Insurance","desc":"Global property and casualty insurer, listed in New York.","sector_ja":"保険","desc_ja":"ニューヨーク上場のグローバル損害保険会社。","roles":1},"Coupang (Rocket One)":{"sector":"E-commerce","desc":"Korean e-commerce group, listed in New York, now building out its Japan operation.","sector_ja":"EC","desc_ja":"米国上場の韓国EC大手。日本事業を拡大中。","roles":1},"CrowdStrike":{"sector":"Security vendor","desc":"US endpoint and cloud security vendor behind the Falcon platform.","sector_ja":"セキュリティベンダー","desc_ja":"Falconを提供する米国のエンドポイント・クラウドセキュリティ企業。","roles":1},"Cyber Defense":{"sector":"Security vendor","desc":"Japanese security specialist covering penetration testing, digital forensics and incident response.","sector_ja":"セキュリティベンダー","desc_ja":"ペネトレーションテスト、フォレンジック、インシデント対応の専門企業。","roles":4},"Dai-Ichi Life":{"sector":"Insurance","desc":"One of Japan's largest life insurance groups. TSE listed.","sector_ja":"保険","desc_ja":"国内最大手の生命保険グループのひとつ。東証上場。","roles":2},"Deloitte":{"sector":"Consulting","desc":"Big Four professional services firm. The cyber practice covers red team, incident response and advisory.","sector_ja":"コンサルティング","desc_ja":"BIG4の一角。レッドチーム、インシデント対応、アドバイザリーを提供。","roles":1},"Deloitte DTCY Multi Team":{"sector":"Consulting","desc":"Deloitte Tohmatsu Cyber, the dedicated cyber security arm of Deloitte in Japan.","sector_ja":"コンサルティング","desc_ja":"デロイトトーマツ サイバー。日本におけるサイバーセキュリティ専門会社。","roles":2},"Deloitte Financial Advisory":{"sector":"Consulting","desc":"Deloitte Tohmatsu Financial Advisory. Forensics, financial crime and investigation work.","sector_ja":"コンサルティング","desc_ja":"デロイトトーマツ ファイナンシャルアドバイザリー。フォレンジックと不正調査。","roles":1},"Dolbix":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":1},"Dolbix Consulting":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":2},"Enechain":{"sector":"Energy trading","desc":"Startup running Japan's marketplaces for electricity and environmental value trading.","sector_ja":"エネルギー取引","desc_ja":"電力・環境価値の取引プラットフォームを運営するスタートアップ。","roles":2},"Exawizards":{"sector":"AI","desc":"AI company, TSE listed. Builds AI services for industry, healthcare and the public sector.","sector_ja":"AI","desc_ja":"産業・医療・公共向けAIサービスを開発。東証上場。","roles":3},"FFRI Security":{"sector":"Security vendor","desc":"Japanese cyber security research and product company. TSE listed. Endpoint security and threat research.","sector_ja":"セキュリティベンダー","desc_ja":"エンドポイントセキュリティと脅威研究を行う国内企業。東証上場。","roles":2},"FFRI Security Works":{"sector":"Security vendor","desc":"Service arm of FFRI Security. Assessment and penetration testing delivery.","sector_ja":"セキュリティベンダー","desc_ja":"FFRIセキュリティのサービス部門。診断・ペネトレーションテストを担当。","roles":1},"Fenix24":{"sector":"Security vendor","desc":"US incident recovery specialist. Restores systems and networks after ransomware attacks.","sector_ja":"セキュリティベンダー","desc_ja":"ランサムウェア被害後の復旧を専門とする米国企業。","roles":1},"Flatt Security":{"sector":"Security startup","desc":"Japanese security startup focused on web and cloud application assessment.","sector_ja":"セキュリティスタートアップ","desc_ja":"Web・クラウドアプリケーション診断を手がける国内スタートアップ。","roles":1},"Geniee":{"sector":"Ad tech","desc":"Ad platform, marketing SaaS and digital PR company. TSE listed since 2017. Pays for AI tools for engineers.","sector_ja":"アドテク","desc_ja":"広告プラットフォームとマーケティングSaaSを展開。2017年上場。エンジニア向けAIツール費用は会社負担。","roles":1},"HRBrain":{"sector":"HR SaaS","desc":"HR software company. Performance management and talent systems for Japanese employers.","sector_ja":"人事SaaS","desc_ja":"人事評価・タレントマネジメントのクラウドサービス。","roles":2},"Intloop":{"sector":"Consulting","desc":"Japanese consulting and professional services firm.","sector_ja":"コンサルティング","desc_ja":"国内のコンサルティング・プロフェッショナルサービス企業。","roles":1},"KPMG Ignition KIT":{"sector":"Consulting","desc":"KPMG Ignition Tokyo, the technology and product development arm of KPMG Japan.","sector_ja":"コンサルティング","desc_ja":"KPMGジャパンのテクノロジー・プロダクト開発拠点。","roles":1},"LegalOntechnologies":{"sector":"Legal tech","desc":"LegalOn Technologies. AI contract review software used widely by Japanese legal teams.","sector_ja":"リーガルテック","desc_ja":"AI契約審査サービスを提供。国内の法務部門で広く利用されている。","roles":3},"LineYahoo":{"sector":"Internet","desc":"LY Corporation. Japan's largest internet group, formed by the merger of LINE and Yahoo Japan.","sector_ja":"インターネット","desc_ja":"LINEとヤフーの統合により誕生した国内最大級のインターネット企業。","roles":1},"Looop":{"sector":"Energy","desc":"Renewable energy company. Solar power and retail electricity supply in Japan.","sector_ja":"エネルギー","desc_ja":"太陽光発電と電力小売を手がける再生可能エネルギー企業。","roles":1},"MBSD":{"sector":"Security vendor","desc":"Mitsui Bussan Secure Directions. Security assessment and consulting arm of the Mitsui group.","sector_ja":"セキュリティベンダー","desc_ja":"三井物産セキュアディレクション。セキュリティ診断とコンサルティングを提供。","roles":7},"MS&AD Holdings (Mitsui Sumitomo)":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups.","sector_ja":"保険","desc_ja":"国内三大損害保険グループのひとつ。","roles":2},"Mercari":{"sector":"Internet","desc":"Japan's largest C2C marketplace. TSE listed. Also runs the Merpay and Mercoin fintech businesses.","sector_ja":"インターネット","desc_ja":"国内最大のフリマアプリ。メルペイ、メルコインも運営。東証上場。","roles":2},"Metlife":{"sector":"Insurance","desc":"US life insurance group. MetLife Japan is one of the largest foreign insurers in the market.","sector_ja":"保険","desc_ja":"米国系生命保険グループ。日本市場で最大級の外資系保険会社。","roles":1},"Mizuho":{"sector":"Banking","desc":"One of Japan's three megabanks. Banking, trust and securities under one group.","sector_ja":"銀行","desc_ja":"三大メガバンクのひとつ。銀行・信託・証券を擁する。","roles":2},"NFlabs":{"sector":"Security vendor","desc":"Security training and assessment specialist. Builds CTF and hands-on cyber training content.","sector_ja":"セキュリティベンダー","desc_ja":"CTFや実践型トレーニング教材を制作する人材育成・診断企業。","roles":3},"Netskope":{"sector":"Security vendor","desc":"US cloud security vendor. SASE, secure web gateway and data protection.","sector_ja":"セキュリティベンダー","desc_ja":"SASEとクラウドセキュリティを提供する米国ベンダー。","roles":1},"Nihon Keizai Shimbum (Nikkei)":{"sector":"Media","desc":"Nikkei. Japan's leading business newspaper and financial media group.","sector_ja":"メディア","desc_ja":"日本経済新聞社。国内を代表する経済メディア。","roles":1},"Nomura":{"sector":"Banking","desc":"Nomura Holdings. Japan's largest investment bank and securities firm.","sector_ja":"証券","desc_ja":"野村ホールディングス。国内最大手の証券・投資銀行。","roles":1},"Olympus":{"sector":"Medical devices","desc":"Global medical technology company, best known for endoscopes.","sector_ja":"医療機器","desc_ja":"内視鏡で世界をリードする医療機器メーカー。","roles":2},"Orix":{"sector":"Financial services","desc":"Diversified financial group. Leasing, banking, real estate and asset management.","sector_ja":"金融","desc_ja":"リース、銀行、不動産、資産運用を手がける総合金融グループ。","roles":1},"Paidy":{"sector":"Fintech","desc":"Buy now pay later service in Japan. Part of PayPal since 2021.","sector_ja":"フィンテック","desc_ja":"後払い決済サービス。2021年よりPayPalグループ。","roles":1},"Palo Alto":{"sector":"Security vendor","desc":"Palo Alto Networks. US network and cloud security vendor. Prisma and Cortex product lines.","sector_ja":"セキュリティベンダー","desc_ja":"ネットワーク・クラウドセキュリティの米国大手。PrismaとCortexを展開。","roles":3},"Paypay Bank":{"sector":"Banking","desc":"Digital bank in the SoftBank and PayPay group.","sector_ja":"銀行","desc_ja":"ソフトバンク・PayPayグループのデジタルバンク。","roles":1},"Protiviti":{"sector":"Consulting","desc":"Global risk, internal audit and technology consulting firm.","sector_ja":"コンサルティング","desc_ja":"リスク・内部監査・ITを専門とするグローバルコンサルティングファーム。","roles":1},"Rapid7":{"sector":"Security vendor","desc":"US security vendor. Vulnerability management, detection and response, and MDR services.","sector_ja":"セキュリティベンダー","desc_ja":"脆弱性管理、検知・対応、MDRを提供する米国ベンダー。","roles":1},"Re-grit Partners":{"sector":"Consulting","desc":"Japanese IT and management consulting firm.","sector_ja":"コンサルティング","desc_ja":"国内のIT・経営コンサルティングファーム。","roles":2},"SaCuRa KF":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":2},"Sakana AI":{"sector":"AI","desc":"Tokyo AI research company founded in 2023. Builds foundation models and works with government and enterprise partners.","sector_ja":"AI","desc_ja":"2023年設立の東京拠点AI研究企業。基盤モデルを開発し、官公庁・大企業と協業。","roles":6},"SanSan":{"sector":"SaaS","desc":"Business card and contact management SaaS. TSE listed. Also runs the Bill One invoice product.","sector_ja":"SaaS","desc_ja":"名刺・顧客情報管理のクラウドサービス。Bill Oneも展開。東証上場。","roles":3},"Simpleform":{"sector":"SaaS","desc":"","sector_ja":"SaaS","desc_ja":"","roles":1},"SmartHR":{"sector":"HR SaaS","desc":"Cloud HR and labour management software used by Japanese employers.","sector_ja":"人事SaaS","desc_ja":"労務管理・人事のクラウドサービス。","roles":2},"Solize":{"sector":"Engineering services","desc":"Engineering services firm working with Japanese manufacturers, especially automotive.","sector_ja":"エンジニアリング","desc_ja":"自動車を中心に製造業を支援するエンジニアリング企業。","roles":1},"Sompo":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups.","sector_ja":"保険","desc_ja":"国内三大損害保険グループのひとつ。","roles":1},"Sompo (Assigned to group company)":{"sector":"Insurance","desc":"One of Japan's three largest non-life insurance groups. This role sits in a group company.","sector_ja":"保険","desc_ja":"国内三大損害保険グループのひとつ。本ポジションはグループ会社所属。","roles":1},"Sony":{"sector":"Electronics","desc":"Global electronics, entertainment and gaming group. These roles sit in the global CSIRT and internal security functions.","sector_ja":"エレクトロニクス","desc_ja":"電機・エンタメ・ゲームを展開するグローバル企業。グローバルCSIRTと社内セキュリティ部門の募集。","roles":4},"Sony Semi Conductor Solutions":{"sector":"Semiconductors","desc":"Sony's semiconductor business. World leader in image sensors.","sector_ja":"半導体","desc_ja":"ソニーの半導体事業。イメージセンサーで世界首位。","roles":1},"Surugaya (Mercari)":{"sector":"Retail","desc":"Second-hand hobby, game and media retailer based in Shizuoka.","sector_ja":"小売","desc_ja":"静岡を拠点とする中古ホビー・ゲーム・メディア販売。","roles":1},"Trust":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":3},"Ubie":{"sector":"Health tech","desc":"Healthcare AI startup. Symptom checker for patients and software for hospitals.","sector_ja":"ヘルステック","desc_ja":"症状検索エンジンと医療機関向けソフトを開発するAIスタートアップ。","roles":2},"Wave XROSS":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":1},"Zein":{"sector":"Consulting","desc":"","sector_ja":"コンサルティング","desc_ja":"","roles":1}};
+
+/* ---------- translations. Company names are never translated. ---------- */
+const I18N = {
+ en:{
+  title:"Open cyber security roles, Tokyo", curatedBy:"Curated by", companies:"Companies",
+  roles:"Open roles", updated:"Updated", byRole:"By role", byCompany:"By company",
+  rolesShown:"roles shown", companiesShown:"companies shown", filters:"Filters",
+  search:"Search role, company or skill", anyJp:"Any Japanese level", anyPay:"Any salary",
+  payAbove:"¥{n}M and above", anyWork:"Any work style", remote3:"3 or more remote days",
+  fullRemote:"Fully remote", labelType:"Company", labelFocus:"Focus", clear:"Clear all filters",
+  emptyTitle:"Nothing matches these filters", emptyBody:"Try removing one filter, or clear all and start again.",
+  overview:"Overview", requirements:"Requirements", moreAt:"{n} more at {co}",
+  locWork:"Location and work style", language:"Language", package:"Package", about:"About {co}",
+  working:"Working with Robert Half", focusAreas:"Focus areas", langReq:"Language requirement",
+  fullDesc:"Full description", askFull:"Ask {name} for the full job description and background on the team.",
+  annual:"Annual salary", coType:"Company type", level:"Level", japanese:"Japanese", english:"English",
+  openRoles:"Open roles", back:"Back", view:"View", interest:"Express interest",
+  posting:"View job posting", askAbout:"Ask about {co}", openRole:"open role", openRolesN:"open roles",
+  w1:"Free for candidates. The hiring company pays the fee.",
+  w2:"We brief you on the role, team and culture before you apply.",
+  w3:"We introduce you directly to the hiring manager.",
+  w4:"We support you through interviews and offer negotiation.",
+  foot:"Salary figures are indicative annual packages in Japanese yen and are confirmed with each employer at application stage. Robert Half is paid by the hiring company, so this service is free for candidates.",
+  ask:"Ask", notSpecified:"Not specified", jd:"Job description"
+ },
+ ja:{
+  title:"サイバーセキュリティ求人（東京）", curatedBy:"担当", companies:"企業数",
+  roles:"募集ポジション", updated:"更新", byRole:"職種別", byCompany:"企業別",
+  rolesShown:"件のポジション", companiesShown:"社を表示", filters:"絞り込み",
+  search:"職種、企業名、スキルで検索", anyJp:"日本語レベル：すべて", anyPay:"年収：すべて",
+  payAbove:"{n}00万円以上", anyWork:"勤務形態：すべて", remote3:"週3日以上リモート",
+  fullRemote:"フルリモート", labelType:"企業", labelFocus:"分野", clear:"絞り込みをすべて解除",
+  emptyTitle:"条件に合うものがありません", emptyBody:"条件をひとつ外すか、すべて解除してお試しください。",
+  overview:"概要", requirements:"応募要件", moreAt:"{co}の他{n}件",
+  locWork:"勤務地・勤務形態", language:"語学", package:"待遇", about:"{co}について",
+  working:"Robert Halfのサポート", focusAreas:"担当分野", langReq:"語学要件",
+  fullDesc:"詳細な職務内容", askFull:"詳しい職務内容やチームの情報は{name}までお問い合わせください。",
+  annual:"想定年収", coType:"企業タイプ", level:"レベル", japanese:"日本語", english:"英語",
+  openRoles:"募集中のポジション", back:"戻る", view:"詳細", interest:"応募・相談する",
+  posting:"求人ページを見る", askAbout:"{co}について問い合わせる", openRole:"件募集", openRolesN:"件募集",
+  w1:"候補者の方は無料です。費用は採用企業が負担します。",
+  w2:"応募前に、職務内容、チーム、社風をご説明します。",
+  w3:"採用責任者に直接ご紹介します。",
+  w4:"面接から条件交渉まで一貫してサポートします。",
+  foot:"年収は目安の想定年収です。応募段階で各企業と確認します。費用は採用企業が負担するため、候補者の方は無料でご利用いただけます。",
+  ask:"要確認", notSpecified:"指定なし", jd:"求人詳細"
+ }
+};
+const TAG_JA = {
+ "Red Team & Pentest":"レッドチーム・ペネトレーションテスト","SOC & Incident Response":"SOC・インシデント対応",
+ "GRC & Governance":"GRC・ガバナンス","Product & AppSec":"プロダクト・アプリケーションセキュリティ",
+ "Cloud Security":"クラウドセキュリティ","Identity & Access":"ID・アクセス管理","AI Security":"AIセキュリティ",
+ "Privacy":"プライバシー","OT, IoT & Automotive":"OT・IoT・車載","Network & Infrastructure":"ネットワーク・インフラ",
+ "Security Architecture":"セキュリティアーキテクチャ","Vulnerability Management":"脆弱性管理",
+ "Security Engineering":"セキュリティエンジニアリング","Consulting":"コンサルティング",
+ "Project Management":"プロジェクトマネジメント","Pre-sales":"プリセールス","Post-sales":"ポストセールス","Sales":"セールス"
+};
+const TYPE_JA = {"Internal":"事業会社","Consulting":"コンサルティングファーム","Vendor":"セキュリティベンダー","Technology":"テック企業"};
+const LVL_JA  = {"Native":"ネイティブ","Fluent":"流暢","Business":"ビジネス","Conversational":"日常会話",
+                 "Either":"不問","Ask":"要確認","Not specified":"指定なし"};
+const SEN_JA  = {"Leadership":"管理職・幹部","Senior":"シニア","Mid-level":"ミドル"};
+const LOC_JA  = {"Tokyo (area TBC)":"東京（勤務地未定）","Marunouchi or remote":"丸の内またはリモート",
+                 "Tokyo or Osaka":"東京または大阪","Tokyo":"東京","Remote":"リモート"};
 
 const $ = s => document.querySelector(s);
 const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const state = {q:"", tags:new Set(), types:new Set(), jp:"", pay:0, rem:"",
-               view:"role", openRole:null, openCo:null, tab:0};
+               view:"role", lang:"en", folded:window.innerWidth < 760,
+               openRole:null, openCo:null, tab:0};
+const L = () => I18N[state.lang];
+const t = (k, v={}) => Object.entries(v).reduce((s,[a,b]) => s.replace(`{${a}}`, b), L()[k]);
+const ja = () => state.lang === 'ja';
 
-$('#curator').textContent = CONTACT.name;
-$('#curatorTitle').textContent = CONTACT.title;
-$('#sUp').textContent = CONTACT.updated;
-$('#sRo').textContent = ROLES.length;
-$('#sCo').textContent = Object.keys(COMPANIES).length;
+/* ---------- localised field readers ---------- */
+const co = n => COMPANIES[n] || {sector:'',desc:'',sector_ja:'',desc_ja:'',roles:0};
+const coSector = n => (ja() ? co(n).sector_ja : co(n).sector);
+const coDesc   = n => (ja() ? co(n).desc_ja   : co(n).desc);
+const tagTxt   = x => (ja() ? (TAG_JA[x]  || x) : x);
+const typeTxt  = x => (ja() ? (TYPE_JA[x] || x) : x);
+const lvlTxt   = x => (ja() ? (LVL_JA[x]  || x) : x);
+const senTxt   = x => (ja() ? (SEN_JA[x]  || x) : x);
+const locTxt   = x => (ja() ? (LOC_JA[x]  || x) : x);
 
-/* ---------- derived labels ---------- */
-function langPill(r){
-  if (r.jp === 'Conversational' || r.jp === 'Either') return {t:'English OK', c:'p-green'};
-  if (r.jp === 'Business') return {t:'Business Japanese', c:'p-green'};
-  if (r.jp === 'Fluent') return {t:'Fluent Japanese', c:'p-amber'};
-  return {t:'Native Japanese', c:'p-amber'};
+function payTxt(r){
+  if (!ja()) return r.salary;
+  if (r.salary_max === null && r.salary_min === null) return L().ask;
+  const man = n => `${Math.round(n*100)}万円`;
+  const plus = r.salary.endsWith('+') ? '以上' : '';
+  if (r.salary_min === null) return `〜${man(r.salary_max)}` + plus;
+  if (r.salary_min === r.salary_max) return man(r.salary_max) + plus;
+  return `${Math.round(r.salary_min*100)}万〜${man(r.salary_max)}` + plus;
+}
+function remoteTxt(r){
+  if (!ja()) return r.remote;
+  if (r.remote === 'Fully remote') return 'フルリモート';
+  if (r.remote === 'Remote friendly') return 'リモート可';
+  if (r.remote === 'Ask') return '要確認';
+  const d = parseInt(r.remote);
+  return isNaN(d) ? r.remote : `週${d}日リモート`;
 }
 function remoteDays(r){
   if (r.remote === 'Fully remote') return 5;
   if (r.remote === 'Remote friendly') return 3;
-  const d = parseInt(r.remote);
-  return isNaN(d) ? -1 : d;
+  const d = parseInt(r.remote); return isNaN(d) ? -1 : d;
+}
+function langPill(r){
+  if (r.jp === 'Conversational' || r.jp === 'Either')
+    return {t: ja() ? '英語メインで可' : 'English OK', c:'p-green'};
+  if (r.jp === 'Business') return {t: ja() ? '日本語ビジネス' : 'Business Japanese', c:'p-green'};
+  if (r.jp === 'Fluent')   return {t: ja() ? '日本語流暢'     : 'Fluent Japanese',  c:'p-amber'};
+  return {t: ja() ? '日本語ネイティブ' : 'Native Japanese', c:'p-amber'};
 }
 function remotePill(r){
   const d = remoteDays(r);
-  if (d < 0) return null;
-  return {t: r.remote, c: d >= 3 ? 'p-purple' : 'p-grey'};
+  return d < 0 ? null : {t: remoteTxt(r), c: d >= 3 ? 'p-purple' : 'p-grey'};
 }
-function co(name){ return COMPANIES[name] || {sector:'', desc:'', roles:0}; }
 
-/* ---------- filter controls ---------- */
-const allTags = [...new Set(ROLES.flatMap(r => r.tags))]
-  .sort((a,b) => ROLES.filter(r=>r.tags.includes(b)).length - ROLES.filter(r=>r.tags.includes(a)).length);
-$('#chips').innerHTML = allTags.map(t =>
-  `<button class="chip" type="button" aria-pressed="false" data-tag="${esc(t)}">${esc(t)}</button>`).join('');
-
-const TYPE_ORDER = ['Internal','Consulting','Vendor','Technology'];
-$('#chipsType').innerHTML = TYPE_ORDER.filter(t => ROLES.some(r=>r.employer_type===t)).map(t =>
-  `<button class="chip" type="button" aria-pressed="false" data-type="${esc(t)}">${esc(t)}
-   <small>${ROLES.filter(r=>r.employer_type===t).length}</small></button>`).join('');
-
-$('#fJp').insertAdjacentHTML('beforeend',
-  ['Native','Fluent','Business','Conversational'].map(v=>`<option value="${v}">${v}</option>`).join(''));
-
+/* ---------- filtering ---------- */
 function visible(){
   const q = state.q.toLowerCase().trim();
   return ROLES.filter(r => {
-    const hay = (r.title+' '+r.company+' '+r.tags.join(' ')+' '+r.location+' '+co(r.company).sector).toLowerCase();
+    const hay = (r.title+' '+r.company+' '+r.tags.join(' ')+' '+r.tags.map(tagTxt).join(' ')
+      +' '+r.location+' '+(coSector(r.company)||'')).toLowerCase();
     if (q && !hay.includes(q)) return false;
-    if (state.tags.size && ![...state.tags].every(t => r.tags.includes(t))) return false;
+    if (state.tags.size && ![...state.tags].every(x => r.tags.includes(x))) return false;
     if (state.types.size && !state.types.has(r.employer_type)) return false;
     if (state.jp && r.jp !== state.jp) return false;
     if (state.pay && !(r.salary_max >= state.pay)) return false;
@@ -255,157 +360,208 @@ function visible(){
     return true;
   });
 }
+const activeCount = () => state.tags.size + state.types.size
+  + (state.q?1:0) + (state.jp?1:0) + (state.pay?1:0) + (state.rem?1:0);
 
 /* ---------- cards ---------- */
 function pills(r){
   const out = [langPill(r)];
   const rp = remotePill(r); if (rp) out.push(rp);
-  r.tags.slice(0,2).forEach(t => out.push({t, c:'p-grey'}));
+  r.tags.slice(0,2).forEach(x => out.push({t: tagTxt(x), c:'p-grey'}));
   return out.map(p => `<span class="pill ${p.c}">${esc(p.t)}</span>`).join('');
 }
-
 function roleCard(r, i){
-  return `<button class="card" type="button" data-role="${i}">
+  return `<div class="card" role="button" tabindex="0" data-role="${i}">
     <div class="cname">${esc(r.company)}</div>
-    <div class="csector">${esc(co(r.company).sector || r.employer_type)}</div>
+    <div class="csector">${esc(coSector(r.company) || typeTxt(r.employer_type))}</div>
     <div class="role">${esc(r.title)}</div>
-    <div class="pay">${esc(r.salary)}</div>
+    <div class="pay">${esc(payTxt(r))}</div>
     <div class="pins">${pills(r)}</div>
-    <div class="loc">📍 ${esc(r.location)}</div>
-  </button>`;
+    <div class="cardfoot">
+      <span class="loc">📍 ${esc(locTxt(r.location))}</span>
+      ${r.link ? `<a class="jd" href="${esc(r.link)}" target="_blank" rel="noopener"
+        title="${esc(t('posting'))}">📄 ${esc(t('jd'))} ↗</a>` : ''}
+    </div></div>`;
 }
-
 function companyCard(name, rs){
-  const c = co(name);
   const pays = rs.map(r=>r.salary_max).filter(Boolean);
-  const range = pays.length ? `¥${Math.min(...pays)}M to ¥${Math.max(...pays)}M` : 'Ask';
+  const range = pays.length
+    ? (ja() ? `${Math.round(Math.min(...pays)*100)}万〜${Math.round(Math.max(...pays)*100)}万円`
+            : `¥${Math.min(...pays)}M to ¥${Math.max(...pays)}M`)
+    : L().ask;
   const set = [...new Set(rs.flatMap(r=>r.tags))].slice(0,3);
-  return `<button class="card" type="button" data-co="${esc(name)}">
+  const d = coDesc(name);
+  return `<div class="card" role="button" tabindex="0" data-co="${esc(name)}">
     <div class="cname">${esc(name)}</div>
-    <div class="csector">${esc(c.sector || rs[0].employer_type)}</div>
-    ${c.desc ? `<div class="desc">${esc(c.desc)}</div>` : ''}
-    <div class="pins">${set.map(t=>`<span class="pill p-grey">${esc(t)}</span>`).join('')}</div>
-    <div class="foot"><span class="n">${rs.length} open role${rs.length>1?'s':''}</span>
-      <span style="color:var(--green);font-weight:bold">${esc(range)}</span></div>
-  </button>`;
+    <div class="csector">${esc(coSector(name) || typeTxt(rs[0].employer_type))}</div>
+    ${d ? `<div class="desc">${esc(d)}</div>` : ''}
+    <div class="pins">${set.map(x=>`<span class="pill p-grey">${esc(tagTxt(x))}</span>`).join('')}</div>
+    <div class="foot"><span class="n">${rs.length}${ja()?'':' '}${rs.length>1?t('openRolesN'):t('openRole')}</span>
+      <span style="color:var(--green);font-weight:bold">${esc(range)}</span></div></div>`;
 }
+const emptyBlock = () => `<div class="empty"><b>${esc(t('emptyTitle'))}</b>${esc(t('emptyBody'))}</div>`;
 
 function list(){
   const v = visible();
   if (state.view === 'role'){
-    $('#n').textContent = v.length; $('#nLabel').textContent = 'roles shown';
+    $('#n').textContent = v.length; $('#nLabel').textContent = t('rolesShown');
     $('#main').innerHTML = `<div class="grid">${
       v.length ? v.map(r => roleCard(r, ROLES.indexOf(r))).join('') : emptyBlock()}</div>`;
   } else {
     const byCo = {};
     v.forEach(r => (byCo[r.company] = byCo[r.company] || []).push(r));
-    const names = Object.keys(byCo).sort((a,b)=>byCo[b].length-byCo[a].length || a.localeCompare(b));
-    $('#n').textContent = names.length; $('#nLabel').textContent = 'companies shown';
+    const rank = {};
+    v.forEach(r => { if (!(r.company in rank)) rank[r.company] = ROLES.indexOf(r); });
+    const names = Object.keys(byCo).sort((a,b) => rank[a] - rank[b]);
+    $('#n').textContent = names.length; $('#nLabel').textContent = t('companiesShown');
     $('#main').innerHTML = `<div class="grid">${
       names.length ? names.map(n => companyCard(n, byCo[n])).join('') : emptyBlock()}</div>`;
   }
 }
-const emptyBlock = () => `<div class="empty"><b>Nothing matches these filters</b>
-  Try removing one filter, or clear all and start again.</div>`;
 
 /* ---------- detail ---------- */
 function aboutPanel(name){
-  const c = co(name);
-  if (!c.desc) return '';
-  return `<div class="panel"><div class="plabel"><span class="ico">🏢</span>About ${esc(name)}</div>
-    <p>${esc(c.desc)}</p></div>`;
+  const d = coDesc(name);
+  return d ? `<div class="panel"><div class="plabel"><span class="ico">🏢</span>${esc(t('about',{co:name}))}</div>
+    <p>${esc(d)}</p></div>` : '';
 }
-
 function roleDetail(i){
   const r = ROLES[i];
   const sibs = ROLES.map((x,ix)=>({x,ix})).filter(o => o.x.company === r.company && o.ix !== i);
-  const tabs = ['Overview','Requirements'].concat(sibs.length ? [`${sibs.length} more at ${r.company}`] : []);
-  const t = Math.min(state.tab, tabs.length-1);
+  const tabs = [t('overview'), t('requirements')]
+    .concat(sibs.length ? [t('moreAt',{n:sibs.length, co:r.company})] : []);
+  const tb = Math.min(state.tab, tabs.length-1);
   let panel = '';
-
-  if (t === 0){
+  if (tb === 0){
     panel = `<div class="grid2">
-      <div class="panel"><div class="plabel"><span class="ico">📍</span>Location and work style</div>
-        <div class="line"><span class="ico">📍</span><span>${esc(r.location)}</span></div>
-        <div class="line"><span class="ico">🏠</span><span>${esc(r.remote)}</span></div>
-      </div>
-      <div class="panel"><div class="plabel"><span class="ico">🌐</span>Language</div>
-        <div class="line"><span class="ico">🇯🇵</span><span>Japanese: ${esc(r.jp)}</span></div>
-        <div class="line"><span class="ico">🇬🇧</span><span>English: ${esc(r.en)}</span></div>
-      </div></div>
-      <div class="panel"><div class="plabel"><span class="ico">💰</span>Package</div>
-        <div class="kv"><span>Annual salary</span><b>${esc(r.salary)}</b></div>
-        <div class="kv"><span>Company type</span><b>${esc(r.employer_type)}</b></div>
-        <div class="kv"><span>Level</span><b>${esc(r.seniority)}</b></div>
-      </div>
+      <div class="panel"><div class="plabel"><span class="ico">📍</span>${esc(t('locWork'))}</div>
+        <div class="line"><span class="ico">📍</span><span>${esc(locTxt(r.location))}</span></div>
+        <div class="line"><span class="ico">🏠</span><span>${esc(remoteTxt(r))}</span></div></div>
+      <div class="panel"><div class="plabel"><span class="ico">🌐</span>${esc(t('language'))}</div>
+        <div class="line"><span class="ico">🇯🇵</span><span>${esc(t('japanese'))}: ${esc(lvlTxt(r.jp))}</span></div>
+        <div class="line"><span class="ico">🇬🇧</span><span>${esc(t('english'))}: ${esc(lvlTxt(r.en))}</span></div></div></div>
+      <div class="panel"><div class="plabel"><span class="ico">💰</span>${esc(t('package'))}</div>
+        <div class="kv"><span>${esc(t('annual'))}</span><b>${esc(payTxt(r))}</b></div>
+        <div class="kv"><span>${esc(t('coType'))}</span><b>${esc(typeTxt(r.employer_type))}</b></div>
+        <div class="kv"><span>${esc(t('level'))}</span><b>${esc(senTxt(r.seniority))}</b></div></div>
       ${aboutPanel(r.company)}
-      <div class="panel"><div class="plabel"><span class="ico">✅</span>Working with Robert Half</div>
-      <ul><li>Free for candidates. The hiring company pays the fee.</li>
-        <li>We brief you on the role, team and culture before you apply.</li>
-        <li>We introduce you directly to the hiring manager.</li>
-        <li>We support you through interviews and offer negotiation.</li></ul></div>`;
-  } else if (t === 1){
-    panel = `<div class="panel"><div class="plabel"><span class="ico">🎯</span>Focus areas</div>
-      <div class="pins">${r.tags.map(x=>`<span class="pill p-grey">${esc(x)}</span>`).join('')}</div></div>
-      <div class="panel"><div class="plabel"><span class="ico">🌐</span>Language requirement</div>
-        <div class="kv"><span>Japanese</span><b>${esc(r.jp)}</b></div>
-        <div class="kv"><span>English</span><b>${esc(r.en)}</b></div></div>
-      <div class="panel"><div class="plabel"><span class="ico">📄</span>Full description</div>
-        <p>Ask ${esc(CONTACT.name)} for the full job description and background on the team.</p></div>`;
+      <div class="panel"><div class="plabel"><span class="ico">✅</span>${esc(t('working'))}</div>
+        <ul><li>${esc(t('w1'))}</li><li>${esc(t('w2'))}</li><li>${esc(t('w3'))}</li><li>${esc(t('w4'))}</li></ul></div>`;
+  } else if (tb === 1){
+    panel = `<div class="panel"><div class="plabel"><span class="ico">🎯</span>${esc(t('focusAreas'))}</div>
+      <div class="pins">${r.tags.map(x=>`<span class="pill p-grey">${esc(tagTxt(x))}</span>`).join('')}</div></div>
+      <div class="panel"><div class="plabel"><span class="ico">🌐</span>${esc(t('langReq'))}</div>
+        <div class="kv"><span>${esc(t('japanese'))}</span><b>${esc(lvlTxt(r.jp))}</b></div>
+        <div class="kv"><span>${esc(t('english'))}</span><b>${esc(lvlTxt(r.en))}</b></div></div>
+      <div class="panel"><div class="plabel"><span class="ico">📄</span>${esc(t('fullDesc'))}</div>
+        <p>${esc(t('askFull',{name:CONTACT.name}))}</p></div>`;
   } else {
     panel = sibs.map(o => `<button class="more" type="button" data-role="${o.ix}">
-      <span><b>${esc(o.x.title)}</b><small>${esc(o.x.tags[0]||'')} · ${esc(o.x.salary)}</small></span>
-      <span style="color:var(--red);font-weight:bold">View</span></button>`).join('');
+      <span><b>${esc(o.x.title)}</b><small>${esc(tagTxt(o.x.tags[0]||''))} · ${esc(payTxt(o.x))}</small></span>
+      <span style="color:var(--red);font-weight:bold">${esc(t('view'))}</span></button>`).join('');
   }
-
   const mail = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Interested: '+r.title+' at '+r.company)}`;
-  $('#main').innerHTML = `<button class="back" type="button" data-back="1">← Back</button>
-    <div class="dhead"><div class="deyebrow">${esc(r.company)} · ${esc(co(r.company).sector || r.employer_type)}</div>
-      <h2>${esc(r.title)}</h2><div class="dpay">${esc(r.salary)}</div>
+  $('#main').innerHTML = `<button class="back" type="button" data-back="1">← ${esc(t('back'))}</button>
+    <div class="dhead"><div class="deyebrow">${esc(r.company)} · ${esc(coSector(r.company) || typeTxt(r.employer_type))}</div>
+      <h2>${esc(r.title)}</h2><div class="dpay">${esc(payTxt(r))}</div>
       <div class="pins" style="margin-top:10px">${pills(r)}</div></div>
     <div class="tabs" role="tablist">${tabs.map((x,ix)=>
-      `<button class="tab" role="tab" type="button" aria-selected="${ix===t}" data-t="${ix}">${esc(x)}</button>`).join('')}</div>
+      `<button class="tab" role="tab" type="button" aria-selected="${ix===tb}" data-t="${ix}">${esc(x)}</button>`).join('')}</div>
     ${panel}
-    <div class="actions"><a class="btn primary" href="${mail}">Express interest</a>
-    ${r.link ? `<a class="btn ghost" href="${esc(r.link)}" target="_blank" rel="noopener">View job posting</a>` : ''}</div>`;
+    <div class="actions"><a class="btn primary" href="${mail}">${esc(t('interest'))}</a>
+    ${r.link ? `<a class="btn ghost" href="${esc(r.link)}" target="_blank" rel="noopener">${esc(t('posting'))}</a>` : ''}</div>`;
 }
-
 function companyDetail(name){
-  const c = co(name);
   const rs = ROLES.map((x,ix)=>({x,ix})).filter(o => o.x.company === name);
+  const d = coDesc(name);
   const mail = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Interested in roles at '+name)}`;
-  $('#main').innerHTML = `<button class="back" type="button" data-back="1">← Back</button>
-    <div class="dhead"><div class="deyebrow">${esc(c.sector || rs[0].x.employer_type)}</div>
+  $('#main').innerHTML = `<button class="back" type="button" data-back="1">← ${esc(t('back'))}</button>
+    <div class="dhead"><div class="deyebrow">${esc(coSector(name) || typeTxt(rs[0].x.employer_type))}</div>
       <h2>${esc(name)}</h2>
-      <div class="csector">${rs.length} open role${rs.length>1?'s':''}</div></div>
-    ${c.desc ? `<div class="panel"><div class="plabel"><span class="ico">🏢</span>About ${esc(name)}</div>
-      <p>${esc(c.desc)}</p></div>` : ''}
-    <div class="panel"><div class="plabel"><span class="ico">💼</span>Open roles</div>
+      <div class="csector">${rs.length}${ja()?'':' '}${rs.length>1?t('openRolesN'):t('openRole')}</div></div>
+    ${d ? `<div class="panel"><div class="plabel"><span class="ico">🏢</span>${esc(t('about',{co:name}))}</div>
+      <p>${esc(d)}</p></div>` : ''}
+    <div class="panel"><div class="plabel"><span class="ico">💼</span>${esc(t('openRoles'))}</div>
       ${rs.map(o => `<button class="more" type="button" data-role="${o.ix}">
-        <span><b>${esc(o.x.title)}</b><small>${esc(o.x.salary)} · ${esc(o.x.location)} · ${esc(o.x.remote)}</small></span>
-        <span style="color:var(--red);font-weight:bold">View</span></button>`).join('')}</div>
-    <div class="actions"><a class="btn primary" href="${mail}">Ask about ${esc(name)}</a></div>`;
+        <span><b>${esc(o.x.title)}</b><small>${esc(payTxt(o.x))} · ${esc(locTxt(o.x.location))} · ${esc(remoteTxt(o.x))}</small></span>
+        <span style="color:var(--red);font-weight:bold">${esc(t('view'))}</span></button>`).join('')}</div>
+    <div class="actions"><a class="btn primary" href="${mail}">${esc(t('askAbout',{co:name}))}</a></div>`;
 }
 
+/* ---------- chrome ---------- */
+function paintChrome(){
+  document.documentElement.lang = state.lang;
+  $('#h1').textContent = t('title');
+  $('#sub').textContent = `${t('curatedBy')} ${CONTACT.name} · ${CONTACT.title} · Robert Half Japan`;
+  $('#lblCo').textContent = t('companies'); $('#lblRo').textContent = t('roles');
+  $('#lblUp').textContent = t('updated');   $('#sUp').textContent = CONTACT.updated;
+  $('#sRo').textContent = ROLES.length;     $('#sCo').textContent = Object.keys(COMPANIES).length;
+  $('#tRole').textContent = t('byRole');    $('#tCo').textContent = t('byCompany');
+  $('#foldText').textContent = t('filters');
+  $('#q').placeholder = t('search');
+  $('#rlType').textContent = t('labelType'); $('#rlFocus').textContent = t('labelFocus');
+  $('#clear').textContent = t('clear');      $('#foot').textContent = t('foot');
+
+  $('#fJp').innerHTML = `<option value="">${esc(t('anyJp'))}</option>` +
+    ['Native','Fluent','Business','Conversational']
+      .map(v=>`<option value="${v}"${state.jp===v?' selected':''}>${esc(lvlTxt(v))}</option>`).join('');
+  $('#fPay').innerHTML = `<option value="0">${esc(t('anyPay'))}</option>` +
+    [10,13,15,20,25].map(v=>`<option value="${v}"${state.pay===v?' selected':''}>${esc(t('payAbove',{n:v}))}</option>`).join('');
+  $('#fRem').innerHTML = `<option value="">${esc(t('anyWork'))}</option>` +
+    `<option value="remote"${state.rem==='remote'?' selected':''}>${esc(t('remote3'))}</option>` +
+    `<option value="full"${state.rem==='full'?' selected':''}>${esc(t('fullRemote'))}</option>`;
+
+  const allTags = [...new Set(ROLES.flatMap(r=>r.tags))]
+    .sort((a,b)=>ROLES.filter(r=>r.tags.includes(b)).length - ROLES.filter(r=>r.tags.includes(a)).length);
+  $('#chips').innerHTML = allTags.map(x =>
+    `<button class="chip" type="button" aria-pressed="${state.tags.has(x)}" data-tag="${esc(x)}">${esc(tagTxt(x))}</button>`).join('');
+  $('#chipsType').innerHTML = ['Internal','Consulting','Vendor','Technology']
+    .filter(x => ROLES.some(r=>r.employer_type===x)).map(x =>
+    `<button class="chip" type="button" aria-pressed="${state.types.has(x)}" data-type="${esc(x)}">${esc(typeTxt(x))}
+     <small>${ROLES.filter(r=>r.employer_type===x).length}</small></button>`).join('');
+}
+function paintFold(){
+  const c = activeCount(), b = $('#fbody');
+  $('#controls').classList.toggle('folded', state.folded);
+  $('#fold').classList.toggle('active', c > 0);
+  $('#foldBadge').textContent = c;
+  $('#fold').setAttribute('aria-expanded', !state.folded);
+  // Panel height depends on how many chip rows wrap, which depends on screen
+  // width and language. Measure it rather than assuming a fixed ceiling.
+  b.style.maxHeight = state.folded ? '0px' : b.scrollHeight + 'px';
+}
+let rz;
+window.addEventListener('resize', () => {
+  clearTimeout(rz);
+  rz = setTimeout(paintFold, 120);
+});
 function render(){
   if (state.openRole !== null) roleDetail(state.openRole);
   else if (state.openCo) companyDetail(state.openCo);
   else list();
-  window.scrollTo({top:0, behavior:'smooth'});
+  paintFold();
 }
 const reset = () => { state.openRole = null; state.openCo = null; state.tab = 0; };
+const toTop = () => window.scrollTo({top:0, behavior:'smooth'});
 
 /* ---------- events ---------- */
 $('#main').addEventListener('click', e => {
-  const back = e.target.closest('[data-back]');
-  if (back){ reset(); return render(); }
+  if (e.target.closest('a')) return;              // JD link opens normally
+  if (e.target.closest('[data-back]')){ reset(); render(); return toTop(); }
   const role = e.target.closest('[data-role]');
-  if (role){ state.openRole = +role.dataset.role; state.openCo = null; state.tab = 0; return render(); }
-  const cco = e.target.closest('[data-co]');
-  if (cco){ state.openCo = cco.dataset.co; state.openRole = null; return render(); }
-  const tab = e.target.closest('.tab');
-  if (tab){ state.tab = +tab.dataset.t; return render(); }
+  if (role){ state.openRole = +role.dataset.role; state.openCo = null; state.tab = 0; render(); return toTop(); }
+  const c = e.target.closest('[data-co]');
+  if (c){ state.openCo = c.dataset.co; state.openRole = null; render(); return toTop(); }
+  const tb = e.target.closest('.tab');
+  if (tb){ state.tab = +tb.dataset.t; render(); }
 });
+$('#main').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const card = e.target.closest('[role="button"]');
+  if (!card) return;
+  e.preventDefault(); card.click();
+});
+$('#fold').addEventListener('click', () => { state.folded = !state.folded; paintFold(); });
 $('#vRole').addEventListener('click', () => setView('role'));
 $('#vCo').addEventListener('click', () => setView('company'));
 function setView(v){
@@ -414,17 +570,25 @@ function setView(v){
   $('#vCo').setAttribute('aria-pressed', v==='company');
   render();
 }
+$('#lEn').addEventListener('click', () => setLang('en'));
+$('#lJa').addEventListener('click', () => setLang('ja'));
+function setLang(v){
+  state.lang = v;
+  $('#lEn').setAttribute('aria-pressed', v==='en');
+  $('#lJa').setAttribute('aria-pressed', v==='ja');
+  paintChrome(); render();
+}
 $('#chips').addEventListener('click', e => {
   const c = e.target.closest('.chip'); if (!c) return;
-  const t = c.dataset.tag;
-  state.tags.has(t) ? state.tags.delete(t) : state.tags.add(t);
-  c.setAttribute('aria-pressed', state.tags.has(t)); reset(); render();
+  const x = c.dataset.tag;
+  state.tags.has(x) ? state.tags.delete(x) : state.tags.add(x);
+  c.setAttribute('aria-pressed', state.tags.has(x)); reset(); render();
 });
 $('#chipsType').addEventListener('click', e => {
   const c = e.target.closest('.chip'); if (!c) return;
-  const t = c.dataset.type;
-  state.types.has(t) ? state.types.delete(t) : state.types.add(t);
-  c.setAttribute('aria-pressed', state.types.has(t)); reset(); render();
+  const x = c.dataset.type;
+  state.types.has(x) ? state.types.delete(x) : state.types.add(x);
+  c.setAttribute('aria-pressed', state.types.has(x)); reset(); render();
 });
 $('#q').addEventListener('input', e => { state.q = e.target.value; reset(); render(); });
 $('#fJp').addEventListener('change', e => { state.jp = e.target.value; reset(); render(); });
@@ -433,11 +597,10 @@ $('#fRem').addEventListener('change', e => { state.rem = e.target.value; reset()
 $('#clear').addEventListener('click', () => {
   Object.assign(state, {q:"", jp:"", pay:0, rem:""});
   state.tags.clear(); state.types.clear(); reset();
-  $('#q').value=""; $('#fJp').value=""; $('#fRem').value=""; $('#fPay').value="0";
-  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
-  render();
+  $('#q').value = ""; paintChrome(); render();
 });
 
+paintChrome();
 render();
 </script>
 </body>
