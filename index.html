@@ -286,8 +286,23 @@ footer{background:#27323A;color:#C4CDD3;border-top:none;padding:36px 0 34px;font
 .lockpanel{border:1px dashed var(--red)}
 </style>
 <script src="https://accounts.google.com/gsi/client" async></script>
+<style id="xn-css">
+/* Shared menu bar linking the three pages. Edit the same block in all three files. */
+.xn{background:#1B242B;padding-top:env(safe-area-inset-top,0px);font-family:"Noto Sans","Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic","Segoe UI",sans-serif;position:relative;z-index:50}
+.xn-in{display:flex;max-width:1180px;margin:0 auto;padding:0 max(8px,env(safe-area-inset-left,0px)) 0 max(8px,env(safe-area-inset-right,0px))}
+.xn a{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;color:#C4CDD3;text-decoration:none;font-size:14px;font-weight:600;line-height:1.25;text-align:center;border-bottom:3px solid transparent;box-sizing:border-box}
+.xn a:hover,.xn a:focus-visible{color:#fff}
+.xn a:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+.xn a[aria-current="page"]{color:#fff;border-bottom-color:#CC0033}
+.xn .xn-ja{display:none}
+html[lang^="ja"] .xn .xn-ja{display:inline}
+html[lang^="ja"] .xn .xn-en{display:none}
+@media (min-width:700px){.xn-in{justify-content:flex-start;padding-left:16px;padding-right:16px}.xn a{flex:0 0 auto;padding:0 18px}}
+</style>
 </head>
 <body>
+<nav class="xn" id="xn" aria-label="Pages"><div class="xn-in"><a href="https://cyberstevejapan.com/cyber-hiring/" data-href="https://cyberstevejapan.com/cyber-hiring/"><span class="xn-en">Hiring</span><span class="xn-ja">採用支援</span></a><a href="https://cyberstevejapan.com/jobs/" data-href="https://cyberstevejapan.com/jobs/" aria-current="page"><span class="xn-en">Open roles</span><span class="xn-ja">求人一覧</span></a><a href="https://cyberstevejapan.com/job-change/" data-href="https://cyberstevejapan.com/job-change/"><span class="xn-en">Job change</span><span class="xn-ja">転職ガイド</span></a></div></nav>
+
 
 <header><div class="wrap">
   <div class="headtop">
@@ -531,7 +546,7 @@ const LOC_JA  = {"Tokyo (area TBC)":"東京（勤務地未定）","Marunouchi or
 const $ = s => document.querySelector(s);
 const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const state = {q:"", tags:new Set(), types:new Set(), jp:"", pay:0, rem:"",
-               view:"role", lang:"en", engOnly:false, newOnly:false, folded:window.innerWidth < 760,
+               view:"role", lang:(new URLSearchParams(location.search).get("lang")==="ja"?"ja":"en"), engOnly:false, newOnly:false, folded:window.innerWidth < 760,
                openRole:null, openCo:null, tab:0};
 const L = () => I18N[state.lang];
 const t = (k, v={}) => Object.entries(v).reduce((s,[a,b]) => s.replace(`{${a}}`, b), L()[k]);
@@ -1326,8 +1341,20 @@ try {
 } catch (e) {}
 window.addEventListener('load', initGoogle);
 
-paintChrome();
-render();
+setLang(state.lang);
+</script>
+<script id="xn-js">
+(function(){
+  /* Keep the reader's language when they move between the three pages. */
+  var nav=document.getElementById("xn"); if(!nav) return;
+  var links=[].slice.call(nav.querySelectorAll("a[data-href]"));
+  function sync(){
+    var ja=(document.documentElement.lang||"").toLowerCase().indexOf("ja")===0;
+    links.forEach(function(a){a.href=a.getAttribute("data-href")+"?lang="+(ja?"ja":"en")});
+  }
+  sync();
+  if(window.MutationObserver){new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})}
+})();
 </script>
 </body>
 </html>
