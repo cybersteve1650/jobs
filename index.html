@@ -300,12 +300,19 @@ footer{background:#27323A;color:#C4CDD3;border-top:none;padding:36px 0 34px;font
 .xn .xn-ja{display:none}
 html[lang^="ja"] .xn .xn-ja{display:inline}
 html[lang^="ja"] .xn .xn-en{display:none}
+.top .brand,.brandline,.wordmark{transition:opacity .2s ease,visibility .2s ease}
+html.xn-scrolled .top .brand,html.xn-scrolled .brandline,html.xn-scrolled .wordmark{opacity:0;visibility:hidden}
 @media (min-width:700px){.xn-tabs{gap:30px}.xn a.xn-tab{font-size:15px}.xn a.xn-cta{font-size:14px;padding:0 16px;height:36px}}
-.logobar{background:#27323A;padding:20px 0 14px}
-.logobar .brandline{margin-bottom:0}
+.logobar{position:sticky;top:0;z-index:31;background:#27323A}
+.logobar .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;height:60px}
+.logobar .brandline{margin:0}.logobar .rhlogo{margin:0}
+.logobar .headright{width:auto;margin:0;flex-wrap:nowrap}
+.logobar .cta{padding:8px 14px}
+.xn{top:60px}
 header{padding-top:24px}
-.controls{top:46px}
-@media (max-width:640px){.logobar{padding:16px 0 12px}header{padding-top:18px}}
+.controls{top:106px}
+@media (max-width:640px){.logobar .wrap{gap:8px}.logobar .rhlogo{height:17px}.logobar .headright{gap:6px}.logobar .langsw button{padding:6px 8px}.logobar .cta{padding:8px 10px;font-size:13px}.logobar .cta::before{content:none}header{padding-top:18px}}
+@media (max-width:350px){.logobar .rhlogo{height:13px}.logobar .langsw button{padding:6px 6px}}
 </style>
 </head>
 <body>
@@ -315,6 +322,13 @@ header{padding-top:24px}
         <img src="logo.png" alt="Robert Half" class="rhlogo"
              onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brandtext',textContent:'ROBERT HALF'}))">
       </a>
+    <div class="headright">
+      <div class="langsw" role="group" aria-label="Language">
+        <button type="button" id="lEn" aria-pressed="true">EN</button>
+        <button type="button" id="lJa" aria-pressed="false">日本語</button>
+      </div>
+      <a class="cta" id="ctaTop" href="#" target="_blank" rel="noopener"></a>
+    </div>
 </div></div>
 <nav class="xn" id="xn" aria-label="Pages"><div class="xn-in wrap"><div class="xn-tabs"><a class="xn-tab" href="https://cyberstevejapan.com/cyber-hiring/" data-href="https://cyberstevejapan.com/cyber-hiring/"><span class="xn-en">Hiring</span><span class="xn-ja">採用支援</span></a><a class="xn-tab" href="https://cyberstevejapan.com/jobs/" data-href="https://cyberstevejapan.com/jobs/" aria-current="page"><span class="xn-en">Open roles</span><span class="xn-ja">求人一覧</span></a><a class="xn-tab" href="https://cyberstevejapan.com/job-change/" data-href="https://cyberstevejapan.com/job-change/"><span class="xn-en">Job change</span><span class="xn-ja">転職ガイド</span></a></div></div></nav>
 <header><div class="wrap">
@@ -322,13 +336,6 @@ header{padding-top:24px}
     <div>
       <h1 id="h1"></h1>
       <p class="sub" id="sub"></p>
-    </div>
-    <div class="headright">
-      <div class="langsw" role="group" aria-label="Language">
-        <button type="button" id="lEn" aria-pressed="true">EN</button>
-        <button type="button" id="lJa" aria-pressed="false">日本語</button>
-      </div>
-      <a class="cta" id="ctaTop" href="#" target="_blank" rel="noopener"></a>
     </div>
   </div>
   <div class="stats">
@@ -1362,6 +1369,10 @@ setLang(state.lang);
     links.forEach(function(a){a.href=a.getAttribute("data-href")+"?lang="+(ja?"ja":"en")});
   }
   sync();
+  /* Hide the logo once the reader scrolls; the switches beside it stay. */
+  var root=document.documentElement, on=false;
+  function onScroll(){var s=window.scrollY>40; if(s!==on){on=s; root.classList.toggle("xn-scrolled",s)}}
+  window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
   if(window.MutationObserver){new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})}
 })();
 </script>
