@@ -1318,10 +1318,32 @@ function unlock(d, save){
   ROLES = d.roles; COMPANIES = d.companies || {}; LOCKED = false;
   A.status = 'open'; A.user = d.user || {};
   if (save) { try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({t: Date.now(), d})); } catch (e) {} }
+  if (d.session) savePass(d.session, d.sessionExp);
   paintChrome(); render();
+}
+/* 30-day pass. The Apps Script signs it after a Google sign in, so a returning
+   visitor gets fresh data without signing in again. Kept in this browser only. */
+const PASS_KEY = 'jobsPassV1';
+function savePass(s, x){ try { localStorage.setItem(PASS_KEY, JSON.stringify({s, x: x || Date.now() + 30*864e5})); } catch (e) {} }
+function readPass(){ try { const p = JSON.parse(localStorage.getItem(PASS_KEY) || 'null');
+  return p && p.s && p.x > Date.now() ? p.s : null; } catch (e) { return null; } }
+function dropPass(){ try { localStorage.removeItem(PASS_KEY); } catch (e) {} }
+async function usePass(){
+  const pass = readPass(); if (!pass) { dropPass(); return; }
+  A.status = 'busy'; paintAuth();
+  try {
+    const res = await fetch(AUTH.api, {method:'POST', body: JSON.stringify({
+      session: pass, lang: state.lang, ref: document.referrer || '', ua: navigator.userAgent })});
+    const d = await res.json();
+    if (d.ok) return unlock(d, true);
+    dropPass(); A.status = d.blocked ? 'blocked' : 'locked';
+  } catch (e) { A.status = 'locked'; }
+  paintAuth();
+  if (A.status === 'locked' && A.ready && gsi()) google.accounts.id.prompt();
 }
 function signOut(){
   try { sessionStorage.removeItem(CACHE_KEY); } catch (e) {}
+  dropPass();
   if (gsi()) google.accounts.id.disableAutoSelect();
   ROLES = PUBLIC_ROLES; COMPANIES = {}; LOCKED = true;
   A.status = 'locked'; A.user = null; reset();
@@ -1358,6 +1380,7 @@ try {
 window.addEventListener('load', initGoogle);
 
 setLang(state.lang);
+if (A.status === 'locked') usePass();
 </script>
 <script id="xn-js">
 (function(){
