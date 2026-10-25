@@ -287,30 +287,39 @@ footer{background:#27323A;color:#C4CDD3;border-top:none;padding:36px 0 34px;font
 </style>
 <script src="https://accounts.google.com/gsi/client" async></script>
 <style id="xn-css">
-/* Shared menu bar linking the three pages. Edit the same block in all three files. */
-.xn{background:#1B242B;padding-top:env(safe-area-inset-top,0px);font-family:"Noto Sans","Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic","Segoe UI",sans-serif;position:relative;z-index:50}
-.xn-in{display:flex;max-width:1180px;margin:0 auto;padding:0 max(8px,env(safe-area-inset-left,0px)) 0 max(8px,env(safe-area-inset-right,0px))}
-.xn a{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 6px;color:#C4CDD3;text-decoration:none;font-size:14px;font-weight:600;line-height:1.25;text-align:center;border-bottom:3px solid transparent;box-sizing:border-box}
-.xn a:hover,.xn a:focus-visible{color:#fff}
-.xn a:focus-visible{outline:2px solid #fff;outline-offset:-4px}
-.xn a[aria-current="page"]{color:#fff;border-bottom-color:#CC0033}
+/* Shared menu bar linking the three pages. Same block in all three files. */
+.xn{position:sticky;top:0;z-index:30;background:#27323A;box-shadow:inset 0 1px 0 rgba(255,255,255,.1);font-family:"Noto Sans","Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic","Segoe UI",sans-serif}
+.xn-in{display:flex;align-items:center;gap:12px;height:46px;box-sizing:border-box}
+.xn-tabs{display:flex;gap:16px;height:100%;min-width:0}
+.xn a.xn-tab{display:flex;align-items:center;height:100%;box-sizing:border-box;border-top:3px solid transparent;border-bottom:3px solid transparent;color:#C4CDD3;text-decoration:none;font-size:14px;font-weight:600;line-height:1;white-space:nowrap}
+.xn a.xn-tab:hover{color:#fff}
+.xn a.xn-tab:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.xn a.xn-tab[aria-current="page"]{color:#fff;border-bottom-color:#CC0033}
+.xn a.xn-cta{margin-left:auto;flex:none;display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:6px;background:#CC0033;color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+.xn a.xn-cta:hover{background:#A8002A}
 .xn .xn-ja{display:none}
 html[lang^="ja"] .xn .xn-ja{display:inline}
 html[lang^="ja"] .xn .xn-en{display:none}
-@media (min-width:700px){.xn-in{justify-content:flex-start;padding-left:16px;padding-right:16px}.xn a{flex:0 0 auto;padding:0 18px}}
+@media (min-width:700px){.xn-tabs{gap:30px}.xn a.xn-tab{font-size:15px}.xn a.xn-cta{font-size:14px;padding:0 16px;height:36px}}
+.logobar{background:#27323A;padding:20px 0 14px}
+.logobar .brandline{margin-bottom:0}
+header{padding-top:24px}
+.controls{top:46px}
+@media (max-width:640px){.logobar{padding:16px 0 12px}header{padding-top:18px}}
 </style>
 </head>
 <body>
-<nav class="xn" id="xn" aria-label="Pages"><div class="xn-in"><a href="https://cyberstevejapan.com/cyber-hiring/" data-href="https://cyberstevejapan.com/cyber-hiring/"><span class="xn-en">Hiring</span><span class="xn-ja">採用支援</span></a><a href="https://cyberstevejapan.com/jobs/" data-href="https://cyberstevejapan.com/jobs/" aria-current="page"><span class="xn-en">Open roles</span><span class="xn-ja">求人一覧</span></a><a href="https://cyberstevejapan.com/job-change/" data-href="https://cyberstevejapan.com/job-change/"><span class="xn-en">Job change</span><span class="xn-ja">転職ガイド</span></a></div></nav>
 
-
-<header><div class="wrap">
-  <div class="headtop">
-    <div>
+<div class="logobar"><div class="wrap">
       <a class="brandline" href="https://www.roberthalf.jp" target="_blank" rel="noopener">
         <img src="logo.png" alt="Robert Half" class="rhlogo"
              onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brandtext',textContent:'ROBERT HALF'}))">
       </a>
+</div></div>
+<nav class="xn" id="xn" aria-label="Pages"><div class="xn-in wrap"><div class="xn-tabs"><a class="xn-tab" href="https://cyberstevejapan.com/cyber-hiring/" data-href="https://cyberstevejapan.com/cyber-hiring/"><span class="xn-en">Hiring</span><span class="xn-ja">採用支援</span></a><a class="xn-tab" href="https://cyberstevejapan.com/jobs/" data-href="https://cyberstevejapan.com/jobs/" aria-current="page"><span class="xn-en">Open roles</span><span class="xn-ja">求人一覧</span></a><a class="xn-tab" href="https://cyberstevejapan.com/job-change/" data-href="https://cyberstevejapan.com/job-change/"><span class="xn-en">Job change</span><span class="xn-ja">転職ガイド</span></a></div></div></nav>
+<header><div class="wrap">
+  <div class="headtop">
+    <div>
       <h1 id="h1"></h1>
       <p class="sub" id="sub"></p>
     </div>
