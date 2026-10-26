@@ -1213,7 +1213,28 @@ $('#main').addEventListener('keydown', e => {
   if (!card) return;
   e.preventDefault(); card.click();
 });
-$('#fold').addEventListener('click', () => { state.folded = !state.folded; paintFold(); });
+$('#fold').addEventListener('click', () => {
+  state.folded = !state.folded;
+  AF.manual = !state.folded && window.scrollY > AF.at();   // opened by hand while scrolled: keep it open
+  AF.auto = false;
+  paintFold();
+});
+/* Auto fold: filters close when the reader scrolls down into the list, to free
+   up the screen. A manual expand is respected. Back at the top, filters that
+   were closed automatically open again. */
+const AF = {auto:false, manual:false,
+  at(){ const h = document.querySelector('header'); return h ? h.offsetTop + h.offsetHeight : 400; }};
+function autoFold(){
+  if ($('#fold').style.display === 'none') return;
+  const y = window.scrollY, line = AF.at();
+  if (y > line + 120 && !state.folded && !AF.manual) { state.folded = true; AF.auto = true; paintFold(); }
+  else if (y < line * 0.5) {
+    AF.manual = false;
+    if (AF.auto && state.folded) { state.folded = false; AF.auto = false; paintFold(); }
+  }
+}
+let afTick = false;
+window.addEventListener('scroll', () => { if (!afTick) { afTick = true; requestAnimationFrame(() => { afTick = false; autoFold(); }); } }, {passive:true});
 $('#vRole').addEventListener('click', () => setView('role'));
 $('#vCo').addEventListener('click', () => setView('company'));
 $('#vMatch').addEventListener('click', () => setView('match'));
